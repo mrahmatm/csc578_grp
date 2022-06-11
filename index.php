@@ -11,6 +11,7 @@
     <script src="bootstrap-5.2.0-beta1-dist/js/bootstrap.bundle.js"></script>
 </head>
 <body>
-    <h1>meow</h1>
+    <h1>meow</h1><br>
+    <a href="sign up.php">go to sign up page</a>
 </body>
 </html>
