@@ -1,0 +1,30 @@
+.container{
+    margin: 5% 5%;
+    width: auto;
+}
+
+.inputContainer{
+    margin: 3%;
+    width: 40%;
+}
+
+.alignRight{
+    float: right;
+}
+
+.inputBoxText{
+    width: 60%;
+}
+
+.errorText{
+    font-style: italic;
+    color: rgb(255, 0, 0);
+}
+    
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
