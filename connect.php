@@ -2,7 +2,7 @@
 				//hosting
                 $host = 'localhost';
                 //nama db
-				$db   = 'test';
+				$db   = 'pibg';
                 //nama user
 				$user = 'root';
                 //password if any

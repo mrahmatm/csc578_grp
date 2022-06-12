@@ -7,13 +7,11 @@
     <title>Document</title>
 
     <?php
-        include "common.php";
+        include "../common.php";
+        //remarks: kena include hok one folder up sbb benda alah ni dalam folder
     ?>
 </head>
 <body>
-
-    <h1>SMKBPJ</h1><br>
-    <a href="log in.php">go to log in page</a><br>
-    <a href="sign up.php">go to sign up page</a>
+    <h1>parent's dashboard</h1>
 </body>
 </html>
