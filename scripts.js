@@ -115,3 +115,131 @@ function verifyLogIn(){
     }
     
 }
+
+var globalName, globalBC;
+var globalChildren = Array();
+
+function searchBC(input){
+    if(input.length == 0){
+        //letak if input area null
+        //alert("this cannot be null!");
+        return;
+
+    }else{
+        //alert("input isnt null!");
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                var displayName = document.getElementById("displayName");
+                var displayBC = document.getElementById("displayBC");
+                var addChild = document.getElementById("addChild");
+                //alert("found: " + this.responseText);
+                if(this.responseText !== "0"){         
+                    var tempArray = this.responseText.split("*");    
+                    displayName.value = tempArray[0];
+                    displayBC.value = tempArray[1];
+
+                    globalName = tempArray[0];
+                    globalBC = tempArray[1];
+                    addChild.removeAttribute("disabled");
+                }else{
+                    addChild.disabled="true;"
+                    displayName.value = "";
+                    displayBC.value = "";
+                }                         
+            }
+                
+        //document.write("meow");
+    };
+    //alert("sampai dekat sini!");
+
+        xmlhttp.open("GET", "db.php?bc=" + input + "&type=searchBC", true);
+
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
+
+    }
+}
+
+function addChild(){
+
+    //check kalau dia add same student
+    if(globalChildren.findIndex(object=>{ return object.student_BC === globalBC;}) != -1){
+        alert("kan dah add tu kau nak apa lagi?");
+        return;
+    }
+
+    var name = document.getElementById("displayName").value;
+    var bc = document.getElementById("displayBC").value;
+
+    var table = document.getElementById("childrenTable");
+	var targetRow = table.rows.length;
+
+    var newRow = table.insertRow(targetRow);
+	var colName = newRow.insertCell(0);
+	var colBC = newRow.insertCell(1);
+    var colDelete = newRow.insertCell(2);
+    colDelete.value = globalBC;
+
+    //buat unique delete button
+    var btn = document.createElement('button');
+    btn.innerHTML = "Delete";    
+    var setID = 'btn'+globalBC;
+    var createBtn = document.createElement('button');
+    createBtn.innerHTML = "Delete";
+    createBtn.setAttribute('id', setID);
+    createBtn.value = globalBC;
+    createBtn.addEventListener("click", function(){
+        //alert("masuk sini");
+        deleteChild(this.value);
+    });
+    colDelete.appendChild(createBtn);
+    
+    //letak dalam global array
+    var newChild = {
+        student_BC : globalBC,
+        student_name : globalName
+    };
+    //alert("new child: " + newChild.student_BC);
+    globalChildren.push(newChild);
+
+    //display value dalam table
+    colName.innerHTML = globalName;
+    colBC.innerHTML = globalBC;
+
+}
+
+function deleteChild(input){
+    //sampai sini
+    //alert("sabar anat x siap lg");
+    var table = document.getElementById("childrenTable");
+	var length = table.rows.length;
+    var currentRow, currentVal;
+    //alert("length: "+length);
+    var n = 1;
+    while(n < length){
+        currentRow = table.rows[n];
+        currentVal = currentRow.cells[2].value;
+        if(currentVal === input){
+            table.deleteRow(n);
+            break;
+        }
+        n++;
+    }
+
+    //cari index of targetted children (row tu)
+    var targetIndex = globalChildren.findIndex(object=>{
+        return object.student_BC === input;
+    });
+    //alert("index found: " + targetIndex);
+    //delete 1 element dekat index tu
+    globalChildren.splice(targetIndex, 1);
+
+    //alert("current array content: " + JSON.stringify(globalChildren, null));
+}
+
+function submitSignUp(){
+    alert("sabar ni x siap lg (otp)");
+}

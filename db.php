@@ -20,6 +20,21 @@
                 }
 
     //end of verifyLogin
+    }else if(strstr($type, "searchBC")){
+        $input = $_REQUEST['bc'];
+
+        require "connect.php";
+        $stmt = $pdo->prepare("SELECT student_BC, student_name FROM student WHERE student_BC=:input AND parent_icNum IS NULL");
+            $stmt->execute(['input'=>$input]);
+            $result = $stmt->fetch();
+
+            if(!$result){
+                echo "0";
+            }else{
+                echo $result["student_name"]."*".$result["student_BC"];
+            }
+
+    //end of search BC
     }
     
 

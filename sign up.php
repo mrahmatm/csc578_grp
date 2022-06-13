@@ -11,39 +11,41 @@
     ?>
 </head>
 <body>
-    <form action="" id="frmSubmit">
-        <div class="container">
-            <div class="inputContainer">
-            <label for="inputUsername">Username: </label>
-            <input type="text" id="inputUsername" class="alignRight inputBoxText">
-            <div id="feedbackUsername" style="color:red"></div>
-            </div>
-            <div class="inputContainer">
+    
+    <div>
+        <div>
+            <label for="inputName">Name: </label>
+            <input type="text" id="inputName">
             <label for="inputEmail">Email: </label>
-            <input type="text" id="inputEmail" class="alignRight inputBoxText">
-            <div id="feedbackEmail" style="color:red"></div>
-            </div>
-            <div class="inputContainer">
-                <label for="inputPassword">Password: </label>
-                <input type="password" id="inputPassword" class="alignRight inputBoxText" 
-                onkeyup="checkConfirmPass(); checkPasswordStr(this.value)"> 
-            </div>
-            <div class="inputContainer">
-                <label for="inputConfirmPassword">Confirm Password: </label>
-                <input type="password" id="inputConfirmPassword" class="alignRight inputBoxText"
-                onkeyup="checkConfirmPass()">
-                <div id="feedbackPassword" style="color:red"></div>
-            </div>
-            <div class="inputContainer">
-                <div id="passStrFeedback"></div>
-            </div>  
-            <div class="inputContainer">
-                <div class="vertical-center">
-                    <button id="btnSubmit">Submit</button>  
-                </div>
-            </div>           
-            
+            <input type="text" id="inputEmail">
+            <label for="inputPhone">Phone Number: </label>
+            <input type="text" id="inputPhone">
+            <label for="inputPassword">Password: </label>
+            <input type="inputPassword">
+            <label for="inputConfirmPassword">Confirm password: </label>
+            <input type="password">
+            <div><br>
+                <h4>search anak kau</h4><br>
+                <label for="searchBC">Enter Birth Cert Number: </label>
+                <input type="text" id="searchBC" onkeyup="searchBC(this.value)"><br>
+                <h6>Search result:</h6>
+                <label for="displayName">Nama: </label>
+                <input type="text" disabled id="displayName">
+                <label for="displayBC">BC: </label>
+                <input type="text" disabled id="displayBC"><br>
+                <button id="addChild" onclick="addChild()" disabled>Add</button>
+            </div><br>
+            <div>
+                <h4>list anak kau</h4><br>
+                <table id="childrenTable">
+                    <tr>
+                        <th>Name</th><th>BC</th><th>Delete</th>
+                    </tr>
+                </table>
+            </div><br><br>
+            <button id="btnSubmit" onclick="submitSignUp()">Submit</button>
         </div>
-    </form>    
+    </div>    
+
 </body>
 </html>
