@@ -249,9 +249,10 @@ function submitSignUp(){
     //submit each field of input
 }
 
-function submitAduan(){
+function submitAduan(input){
     var title = document.getElementById("inputTitle");
     var details = document.getElementById("inputDetails");
+    var user = input;
 
     if(title.value.length == 0 || details.value.length == 0){
         alert("isi elok2 la");
@@ -263,15 +264,17 @@ function submitAduan(){
         xmlhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 //alert("code: " + code);
-                
-                }                         
-            }
+                if(this.responseText == 1){
+                    alert("Aduan Inserted!")
+                }
+            }                         
+        }
                 
         //document.write("meow");
     
     //alert("sampai dekat sini!");
 
-        xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&type=insertAduan", true);
+        xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&u=" + user + "&type=insertAduan", true);
 
         //alert("paramter sent: " + input);
         xmlhttp.send();

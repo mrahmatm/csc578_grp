@@ -47,16 +47,16 @@
     }else if(strstr($type, "insertAduan")){
         $title = $_REQUEST['t'];
         $details = $_REQUEST['d'];
+        $user = $_REQUEST['u'];
 
         require "connect.php";
-        $stmt = $pdo->prepare("INSERT INTO complaint WHERE student_BC=:input AND parent_icNum IS NULL");
-            $stmt->execute(['input'=>$input]);
-            $result = $stmt->fetch();
+        $stmt = $pdo->prepare("INSERT INTO complaint(parent_icNum, complaint_title, complaint_detail) VALUES(?, ?, ?)");
+        
 
-            if(!$result){
-                echo "0";
+            if($stmt->execute([$user, $title, $details])){
+                echo "1";
             }else{
-                echo $result["student_name"]."*".$result["student_BC"];
+                echo "0";
             }
     }
     

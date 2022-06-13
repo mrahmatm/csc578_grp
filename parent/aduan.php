@@ -11,7 +11,11 @@
         include "common.php";
         //remarks: kena include hok one folder up sbb benda alah ni dalam folder
         $currentUser = $_SESSION["currentUser"];
-        echo "<script>alert('current session: ' + ".$currentUser.")</script>";
+        echo "
+        <script>
+            alert('current session: ' + ".$currentUser.");
+            var globalCurrentUser = ".$currentUser.";  
+        </script>";
 
     ?>
 </head>
@@ -25,7 +29,7 @@
                 <label for="inputDetails">Details: </label>
                 <textarea id="inputDetails" cols="30" rows="10" style="vertical-align: middle;"></textarea>
             </div>
-            <button id="btnSubmit" onclick="submitAduan()">Hantar</button>
+            <button id="btnSubmit" onclick="submitAduan(globalCurrentUser)">Hantar</button>
         </div>
     </div>
 </body>
