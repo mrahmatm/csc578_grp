@@ -280,3 +280,26 @@ function submitAduan(input){
         xmlhttp.send();
 
 }
+
+function logOut(){
+    var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    alert("Logged Out!")
+                    window.location.href = "../log in.php";
+                }
+            }                         
+        }
+                
+        //document.write("meow");
+    
+    //alert("sampai dekat sini!");
+
+        xmlhttp.open("GET", "../db.php?type=logOut", true);
+
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
+}

@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <?php
-    session_start();
+        session_start();
         include "common.php";
         //remarks: kena include hok one folder up sbb benda alah ni dalam folder
         $currentUser = $_SESSION["currentUser"];
@@ -17,5 +17,7 @@
 <body>
     <h1>parent's dashboard</h1>
     <a href="aduan.php">go to aduan</a>
+    <br>
+    <button id="btnLogout" onclick="logOut()">Log Out</button>
 </body>
 </html>

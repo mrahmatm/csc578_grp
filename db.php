@@ -58,6 +58,10 @@
             }else{
                 echo "0";
             }
+    }else if(strstr($type, "logOut")){
+        session_start();  
+        session_destroy();
+        echo "1";
     }
     
 

@@ -16,5 +16,7 @@
 </head>
 <body>
     <h1>staffs's dashboard</h1>
+    <br>
+    <button id="btnLogout" onclick="logOut()">Log Out</button>
 </body>
 </html>
