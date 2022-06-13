@@ -249,3 +249,31 @@ function submitSignUp(){
     //submit each field of input
 }
 
+function submitAduan(){
+    var title = document.getElementById("inputTitle");
+    var details = document.getElementById("inputDetails");
+
+    if(title.value.length == 0 || details.value.length == 0){
+        alert("isi elok2 la");
+        return;
+    }
+        //alert("input isnt null!");
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                
+                }                         
+            }
+                
+        //document.write("meow");
+    
+    //alert("sampai dekat sini!");
+
+        xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&type=insertAduan", true);
+
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
+
+}

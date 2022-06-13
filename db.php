@@ -14,12 +14,20 @@
                 $count = $stmt->fetchColumn();
     
                 if($count < 1){
-                    echo "0".$userType;
+                    echo "0".$userType;               
                 }else{
-                    echo "1".$userType;
+                    //pass session dekat next page dia, jgn lupa session_start()
+                    session_start();                  
+                    $stmt = $pdo->prepare("SELECT * FROM ".$userType." WHERE ".$userType."_email=:username");
+                    $stmt->execute(['username'=>$username]);
+                    $result = $stmt->fetchObject();
+                    $temp = $userType . "_icNum";
+                    $_SESSION["currentUser"] = $result->$temp;   
+                    echo "1".$userType;                        
                 }
 
     //end of verifyLogin
+
     }else if(strstr($type, "searchBC")){
         $input = $_REQUEST['bc'];
 
@@ -35,6 +43,21 @@
             }
 
     //end of search BC
+
+    }else if(strstr($type, "insertAduan")){
+        $title = $_REQUEST['t'];
+        $details = $_REQUEST['d'];
+
+        require "connect.php";
+        $stmt = $pdo->prepare("INSERT INTO complaint WHERE student_BC=:input AND parent_icNum IS NULL");
+            $stmt->execute(['input'=>$input]);
+            $result = $stmt->fetch();
+
+            if(!$result){
+                echo "0";
+            }else{
+                echo $result["student_name"]."*".$result["student_BC"];
+            }
     }
     
 

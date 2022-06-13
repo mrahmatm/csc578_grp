@@ -7,11 +7,15 @@
     <title>Document</title>
 
     <?php
-        include "../common.php";
+    session_start();
+        include "common.php";
         //remarks: kena include hok one folder up sbb benda alah ni dalam folder
+        $currentUser = $_SESSION["currentUser"];
+        echo "<script>alert('current session: ' + ".$currentUser.")</script>";
     ?>
 </head>
 <body>
     <h1>parent's dashboard</h1>
+    <a href="aduan.php">go to aduan</a>
 </body>
 </html>
