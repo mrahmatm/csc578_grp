@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2022 at 03:58 AM
+-- Generation Time: Jun 13, 2022 at 05:15 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -34,6 +34,13 @@ CREATE TABLE `complaint` (
   `complaint_detail` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `complaint`
+--
+
+INSERT INTO `complaint` (`complaint_id`, `parent_icNum`, `complaint_title`, `complaint_detail`) VALUES
+(3, 'root', 'tt', 'tt');
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +60,7 @@ CREATE TABLE `parent` (
 --
 
 INSERT INTO `parent` (`parent_icNum`, `parent_name`, `parent_email`, `parent_phone`, `parent_password`) VALUES
-('000000000', 'orang', 'master@gmail.com', '', 'master');
+('123456789', 'orang', 'master@gmail.com', '', 'master');
 
 -- --------------------------------------------------------
 
@@ -92,7 +99,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
-('ABC123', 'eunha', NULL);
+('ABC123', 'eunha', NULL),
+('ABC456', 'umji', NULL);
 
 --
 -- Indexes for dumped tables
@@ -132,17 +140,11 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `complaint`
---
-ALTER TABLE `complaint`
-  ADD CONSTRAINT `complaint_parent_fk` FOREIGN KEY (`parent_icNum`) REFERENCES `parent` (`parent_icNum`);
 
 --
 -- Constraints for table `student`
