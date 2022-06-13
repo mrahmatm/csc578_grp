@@ -21,9 +21,10 @@
             <label for="inputPhone">Phone Number: </label>
             <input type="text" id="inputPhone">
             <label for="inputPassword">Password: </label>
-            <input type="inputPassword">
+            <input type="password" id="inputPassword">
             <label for="inputConfirmPassword">Confirm password: </label>
-            <input type="password">
+            <input type="password" id="inputConfirmPassword" onkeyup="checkConfirmPass('inputPassword', 'inputConfirmPassword')">
+            <div id="feedbackPassword"></div>
             <div><br>
                 <h4>search anak kau</h4><br>
                 <label for="searchBC">Enter Birth Cert Number: </label>

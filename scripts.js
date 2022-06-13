@@ -1,14 +1,16 @@
 //alert("script loaded!");
-function checkConfirmPass(){
-    var target=document.getElementById("inputPassword").value;
-    var target1=document.getElementById("inputConfirmPassword").value;
+function checkConfirmPass(input1, input2){
+    var target=document.getElementById(input1).value;
+    var target1=document.getElementById(input2).value;
 
     if(target1 === target){
         //alert("is equal now!");
         //document.getElementById("checkStr").disabled = false;
         document.getElementById("feedbackPassword").innerHTML = "";
+        document.getElementById("btnSubmit").removeAttribute("disabled");
     }else{
         document.getElementById("feedbackPassword").innerHTML = "x sama anat";
+        document.getElementById("btnSubmit").disabled = true;
         //document.getElementById("checkStr").disabled = true;
     }
 }
@@ -243,3 +245,4 @@ function deleteChild(input){
 function submitSignUp(){
     alert("sabar ni x siap lg (otp)");
 }
+
