@@ -304,7 +304,6 @@ function logOut(){
 }
 
 function fetchAduan(){
-    
 
     var xmlhttp = new XMLHttpRequest();
 
@@ -357,4 +356,101 @@ function clearTable(target){
         table.deleteRow(n);
         n--;
     }
+}
+
+function fetchChildren(){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*");    
+            var status = tempArray[0];
+            //note: dia jadi array
+            if(status === "1"){
+                
+                var results = tempArray[1]; 
+                var convertResult = JSON.parse(results);
+
+                //alert("Data fetched!");
+                var table = document.getElementById("childrenTable");
+                //clearTable("childrenTable");
+                var targetRow = table.rows.length;
+                
+                var n = 0;
+                while(n < convertResult.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colName = newRow.insertCell(0);
+                    var colBC = newRow.insertCell(1);
+
+                    colName.innerHTML = convertResult[n].student_name;
+                    colBC.innerHTML = convertResult[n].student_BC;
+
+                    n++; targetRow++;
+                }
+            }
+        }                         
+    }
+            
+    xmlhttp.open("GET", "../db.php?type=fetchChildren" + "&p=" + globalCurrentUser, true);
+
+    //alert("paramter sent: " + input);
+    xmlhttp.send();
+}
+
+function fetchInvoice(){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*"); 
+            //alert(tempArray); 
+            var status = tempArray[0];
+            //note: dia jadi array
+            //alert();
+            if(status === "1"){
+                var tempString = tempArray[1].substring(1, tempArray[1].length-1);
+                //alert(tempString);
+                var results = tempString; 
+                var results1 = tempArray[2];
+                var convertResult = JSON.parse(results);
+                var studentResult = JSON.parse(results1);
+                //alert (convertResult.invoice_id);
+                //alert("Data fetched!"+convertResult);
+                var table = document.getElementById("billTable");
+                //clearTable("childrenTable");
+                var targetRow = table.rows.length;
+                
+                var n = 0;
+                while(n < convertResult.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colID = newRow.insertCell(0);
+                    var colYear = newRow.insertCell(1);
+                    var colBC = newRow.insertCell(2);
+                    var colName = newRow.insertCell(3);
+                    var colStatus = newRow.insertCell(4);
+                    var colAction = newRow.insertCell(5);
+
+                    colID.innerHTML = convertResult[n].invoice_id;
+                    colYear.innerHTML = convertResult[n].invoice_year;
+                    colBC.innerHTML = convertResult[n].student_BC;
+                    colName.innerHTML = studentResult[n].student_name;
+                    colStatus.innerHTML = convertResult[n].invoice_status;
+                    colAction.innerHTML = "meow";
+
+                    n++; targetRow++;
+                }
+            }
+        }                         
+    }
+            
+    xmlhttp.open("GET", "../db.php?type=fetchInvoice" + "&p=" + globalCurrentUser, true);
+
+    //alert("paramter sent: " + input);
+    xmlhttp.send();
 }

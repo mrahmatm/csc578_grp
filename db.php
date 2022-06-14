@@ -75,6 +75,52 @@
             }else{
                 echo "0";
             }
+    //end of fetch aduan
+    }else if(strstr($type, "fetchChildren")){
+        
+        require "connect.php";
+        $parentIC = $_REQUEST['p'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum=:parent");     
+        $stmt->execute(["parent"=>$parentIC]);
+        $result = $stmt->fetchAll();
+            if($result != null){
+                echo "1*".json_encode($result);           
+            }else{
+                echo "0";
+            }
+    //end of fetch children
+    }else if(strstr($type, "fetchInvoice")){
+        
+        require "connect.php";
+        $parentIC = $_REQUEST['p'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum=:parent");     
+        $stmt->execute(["parent"=>$parentIC]);
+        $resultStudent = $stmt->fetchAll();
+        $resultInvoice = (array)null;
+        
+        if($resultStudent != null){      
+            //echo json_encode($resultStudent);
+
+            foreach($resultStudent as $student){
+
+                //echo gettype($student);
+
+                $currentBC = $student["student_BC"];
+
+                $stmt = $pdo->prepare("SELECT * FROM invoice WHERE student_BC=:input");     
+                $stmt->execute(['input'=>$currentBC]);
+                //echo "current bc: ".$currentBC;
+                $result = $stmt->fetchAll();
+                
+                array_push($resultInvoice, $result);
+            }     
+            echo "1*".json_encode($resultInvoice)."*".json_encode($resultStudent);           
+        }else{
+            echo "0";
+        }
+    //end of fetch invoice
     }
     
 

@@ -16,7 +16,8 @@
 </head>
 <body>
     <h1>parent's dashboard</h1>
-    <a href="aduan.php">go to aduan</a>
+    <a href="aduan.php">go to aduan</a><br>
+    <a href="semak yuran.php">go to semak yuran</a>
     <br>
     <button id="btnLogout" onclick="logOut()">Log Out</button>
 </body>
