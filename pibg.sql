@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2022 at 05:15 PM
+-- Generation Time: Jun 14, 2022 at 03:52 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -39,7 +39,37 @@ CREATE TABLE `complaint` (
 --
 
 INSERT INTO `complaint` (`complaint_id`, `parent_icNum`, `complaint_title`, `complaint_detail`) VALUES
-(3, 'root', 'tt', 'tt');
+(3, 'root', 'tt', 'tt'),
+(4, 'root', 'aduan saya', 'woof'),
+(5, 'root', 'aduan dia', 'meow'),
+(6, 'root', 'try', 'apink jjang'),
+(7, 'root', 'asas', 'asas'),
+(8, 'root', 'dede', 'dede'),
+(9, 'root', 'nnn', 'nnn'),
+(10, 'root', 'bb', 'bb'),
+(11, '123456789', 'vvv', 'vvv'),
+(12, '987654', 'new complaint', 'nnn');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `invoice_id` int(10) NOT NULL,
+  `student_BC` varchar(10) NOT NULL,
+  `invoice_status` varchar(30) NOT NULL,
+  `invoice_year` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`invoice_id`, `student_BC`, `invoice_status`, `invoice_year`) VALUES
+(1, 'ABC123', 'PENDING', 2022),
+(2, 'ABC456', 'PENDING', 2022);
 
 -- --------------------------------------------------------
 
@@ -80,7 +110,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staff_icNum`, `staff_name`, `staff_email`, `staff_password`) VALUES
-('000000000', 'master staff', 'masterstaff@gmail.com', 'master');
+('098765', 'master staff', 'masterstaff@gmail.com', 'master');
 
 -- --------------------------------------------------------
 
@@ -99,7 +129,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
-('ABC123', 'eunha', NULL),
+('ABC123', 'eunha', '123456789'),
 ('ABC456', 'umji', NULL);
 
 --
@@ -112,6 +142,12 @@ INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
 ALTER TABLE `complaint`
   ADD PRIMARY KEY (`complaint_id`),
   ADD KEY `complaint_parent_fk` (`parent_icNum`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`invoice_id`);
 
 --
 -- Indexes for table `parent`
@@ -140,7 +176,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `invoice_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
