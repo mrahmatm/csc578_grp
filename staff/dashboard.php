@@ -16,6 +16,7 @@
 </head>
 <body>
     <h1>staffs's dashboard</h1>
+    <a href="manage aduan.php">go to manage aduan</a>
     <br>
     <button id="btnLogout" onclick="logOut()">Log Out</button>
 </body>

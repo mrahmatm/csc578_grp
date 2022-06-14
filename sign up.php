@@ -21,7 +21,8 @@
             <label for="inputPhone">Phone Number: </label>
             <input type="text" id="inputPhone">
             <label for="inputPassword">Password: </label>
-            <input type="password" id="inputPassword">
+            <input type="password" id="inputPassword"
+            onkeyup="checkConfirmPass('inputPassword', 'inputConfirmPassword', 'feedbackPassword')">
             <label for="inputConfirmPassword">Confirm password: </label>
             <input type="password" id="inputConfirmPassword" 
             onkeyup="checkConfirmPass('inputPassword', 'inputConfirmPassword', 'feedbackPassword')">

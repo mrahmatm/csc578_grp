@@ -47,21 +47,34 @@
     }else if(strstr($type, "insertAduan")){
         $title = $_REQUEST['t'];
         $details = $_REQUEST['d'];
-        $user = $_REQUEST['u'];
+        $currentUser = $_REQUEST['u'];
 
         require "connect.php";
         $stmt = $pdo->prepare("INSERT INTO complaint(parent_icNum, complaint_title, complaint_detail) VALUES(?, ?, ?)");
         
-
-            if($stmt->execute([$user, $title, $details])){
+            if($stmt->execute([$currentUser, $title, $details])){
                 echo "1";
             }else{
                 echo "0";
             }
+    //end of insert aduan
     }else if(strstr($type, "logOut")){
         session_start();  
         session_destroy();
         echo "1";
+    //end of logout
+    }else if(strstr($type, "fetchAduan")){
+
+        require "connect.php";
+        $stmt = $pdo->prepare("SELECT * FROM complaint");     
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+            if($result != null){
+                echo "1*".json_encode($result);
+                
+            }else{
+                echo "0";
+            }
     }
     
 

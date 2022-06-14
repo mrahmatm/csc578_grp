@@ -249,10 +249,9 @@ function submitSignUp(){
     //submit each field of input
 }
 
-function submitAduan(input){
+function submitAduan(){
     var title = document.getElementById("inputTitle");
     var details = document.getElementById("inputDetails");
-    var user = input;
 
     if(title.value.length == 0 || details.value.length == 0){
         alert("isi elok2 la");
@@ -273,8 +272,8 @@ function submitAduan(input){
         //document.write("meow");
     
     //alert("sampai dekat sini!");
-
-        xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&u=" + user + "&type=insertAduan", true);
+        alert(globalCurrentUser);
+        xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&u=" + globalCurrentUser + "&type=insertAduan", true);
 
         //alert("paramter sent: " + input);
         xmlhttp.send();
@@ -302,4 +301,60 @@ function logOut(){
 
         //alert("paramter sent: " + input);
         xmlhttp.send();
+}
+
+function fetchAduan(){
+    
+
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*");    
+            var status = tempArray[0];
+            //note: dia jadi array
+            if(status === "1"){
+                
+                var results = tempArray[1]; 
+                var convertResult = JSON.parse(results);
+
+                //alert("Data fetched!");
+                var table = document.getElementById("tableAduan");
+                clearTable("tableAduan");
+                var targetRow = table.rows.length;
+                
+                var n = 0;
+                while(n < convertResult.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colID = newRow.insertCell(0);
+                    var colTitle = newRow.insertCell(1);
+                    var colIC = newRow.insertCell(2);
+                    var colDetails = newRow.insertCell(3);
+
+                    colID.innerHTML = convertResult[n].complaint_id;
+                    colIC.innerHTML = convertResult[n].parent_icNum;
+                    colTitle.innerHTML = convertResult[n].complaint_title;
+                    colDetails.innerHTML = convertResult[n].complaint_detail;
+
+                    n++; targetRow++;
+                }        
+            }
+        }                         
+    }
+            
+    xmlhttp.open("GET", "../db.php?type=fetchAduan", true);
+
+    //alert("paramter sent: " + input);
+    xmlhttp.send();
+}
+
+function clearTable(target){
+    var table = document.getElementById(target);
+    var n = table.rows.length - 1;	
+    while(n >= 1){
+        table.deleteRow(n);
+        n--;
+    }
 }
