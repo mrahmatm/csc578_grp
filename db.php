@@ -173,6 +173,38 @@
         }else{
             echo "0";
         }
+    //end of alter invoices
+    }else if(strstr($type, "generateInvoice")){
+        require "connect.php";
+        $year = $_REQUEST['y'];
+    
+        $stmt = $pdo->prepare("SELECT * FROM student");     
+        $stmt->execute();
+        $resultStudent = $stmt->fetchAll();
+        $resultInvoice = (array)null;
+        
+        if($resultStudent != null){      
+            //echo json_encode($resultStudent);
+
+            foreach($resultStudent as $student){
+
+                //echo gettype($student);
+
+                $currentBC = $student["student_BC"];
+
+                $stmt = $pdo->prepare("SELECT * FROM invoice WHERE student_BC=:currentBC AND invoice_year=:currentYear");     
+                $stmt->execute(["currentBC"=>$currentBC, "currentYear"=>$year]);
+                $currentResult = $stmt->fetchAll();
+
+                if($currentResult == null){
+                    $stmt = $pdo->prepare("INSERT INTO invoice (student_BC, invoice_status, invoice_year) VALUES (?, 'PENDING', ?)");     
+                    $stmt->execute([$currentBC, $year]);
+                }                    
+            }     
+            echo "1";           
+        }else{
+            echo "0";
+        }
     }
     
 

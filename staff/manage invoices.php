@@ -41,5 +41,11 @@
         <br>
         <button onclick="alterInvoices('pending')">Pending</button>
     </div>
+    <br><div>
+        <h5>generate yearly invoice</h5>
+        <label for="inputYear">Enter Year: </label>
+        <input type="number" min="2022" max="2050" step="1" value="2022" id="inputYear" />
+        <button id="btnGenerateInvoices" onclick="generateInvoices()">Generate</button>
+    </div>
 </body>
 </html>

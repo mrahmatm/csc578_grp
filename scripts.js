@@ -569,3 +569,34 @@ function alterInvoices(action){
     }
         
 }
+
+function generateInvoices(){
+    var targetYear = document.getElementById("inputYear").value;
+
+    if(targetYear.length > 0){
+        //alert("input isnt null!");
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    //alert("Aduan Inserted!")
+                    clearTable("invoiceTable");
+                    fetchAllInvoice();
+                }else{
+
+                }
+            }                         
+        }   
+        //document.write("meow");
+    //alert("sampai dekat sini!");
+        //alert(globalCurrentUser);
+        xmlhttp.open("GET", "../db.php?type=generateInvoice" + "&y=" + targetYear, true);
+        //alert(globalSelectedInvoice);
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
+    }else{
+        alert("Year cannot be empty!");
+    }
+}
