@@ -27,7 +27,6 @@
                 }
 
     //end of verifyLogin
-
     }else if(strstr($type, "searchBC")){
         $input = $_REQUEST['bc'];
 
@@ -43,7 +42,6 @@
             }
 
     //end of search BC
-
     }else if(strstr($type, "insertAduan")){
         $title = $_REQUEST['t'];
         $details = $_REQUEST['d'];
@@ -121,6 +119,60 @@
             echo "0";
         }
     //end of fetch invoice
+    }else if(strstr($type, "fetchAllInvoice")){
+        require "connect.php";
+        
+        $stmt = $pdo->prepare("SELECT * FROM invoice");     
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if($result != null){
+            echo "1*".json_encode($result);
+        }else{
+            echo "0";
+        }
+    //end of fetch all invoice
+    }else if(strstr($type, "alterInvoices")){
+        $target = $_REQUEST['t'];
+        $action = $_REQUEST['a'];
+
+        //echo gettype($target);
+        
+        $targetArray = explode(",", $target);
+        
+        //trim($targetArray[0], "'");
+        //$lastIndex = sizeof($targetArray) - 1;
+        //trim($targetArray[$lastIndex], "'");
+        //var_dump($targetArray);
+        $n = 0;
+        $queryCondition = " WHERE ";
+        //build WHERE clause
+        while($n < sizeof($targetArray)){
+            if($n!=0)
+                $queryCondition .= " OR ";
+
+            $queryCondition .= "invoice_id =".strval($targetArray[$n]);
+            //echo $queryCondition;
+            $n+=1;
+        }
+
+        //attach to main query
+        if(strstr($action, "delete")){
+            $query = "DELETE FROM invoice " . $queryCondition;
+        }elseif(strstr($action, "approved")){
+            $query = "UPDATE invoice SET invoice_status = 'APPROVED'" . $queryCondition;
+        }elseif(strstr($action, "rejected")){
+            $query = "UPDATE invoice SET invoice_status = 'REJECTED'" . $queryCondition;
+        }elseif(strstr($action, "pending")){
+            $query = "UPDATE invoice SET invoice_status = 'PENDING'" . $queryCondition;
+        }
+            
+        require "connect.php";
+        $stmt = $pdo->prepare($query);       
+        if($stmt->execute()){
+            echo "1";
+        }else{
+            echo "0";
+        }
     }
     
 

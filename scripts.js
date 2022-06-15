@@ -443,6 +443,8 @@ function fetchInvoice(){
                     colStatus.innerHTML = convertResult[n].invoice_status;
                     colAction.innerHTML = "meow";
 
+                    
+
                     n++; targetRow++;
                 }
             }
@@ -453,4 +455,117 @@ function fetchInvoice(){
 
     //alert("paramter sent: " + input);
     xmlhttp.send();
+}
+
+var globalSelectedInvoice = Array();
+
+function fetchAllInvoice(){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*"); 
+            //alert(tempArray); 
+            var status = tempArray[0];
+            //note: dia jadi array
+            //alert();
+
+            if(status === "1"){
+                var results = JSON.parse(tempArray[1]);
+                //alert (convertResult.invoice_id);
+                //alert("Data fetched!"+convertResult);             
+                var table = document.getElementById("invoiceTable");
+                var targetRow = table.rows.length;
+                //alert(table.rows.length);
+                var n = 0;
+                while(n < results.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colID = newRow.insertCell(0);
+                    var colBC = newRow.insertCell(1);
+                    var colYear = newRow.insertCell(2);
+                    var colStatus = newRow.insertCell(3);
+                    var colAttachment = newRow.insertCell(4);
+                    var colAction = newRow.insertCell(5)
+
+                    colID.innerHTML = results[n].invoice_id;
+                    colBC.innerHTML = results[n].student_BC;
+                    colYear.innerHTML = results[n].invoice_year;
+                    colStatus.innerHTML = results[n].invoice_status;
+                    colAttachment.innerHTML = results[n].invoice_attach;
+                    
+                    //colAction.innerHTML = "meow";
+
+                    var newCheckBox = document.createElement('input');
+                    newCheckBox.type = 'checkbox';
+                    newCheckBox.id = 'chk' + results[n].invoice_id;
+                    newCheckBox.value = results[n].invoice_id;
+
+                    newCheckBox.addEventListener("change", function(){
+                        var currentInvoiceId = this.value;
+                        if(this.checked){
+                            globalSelectedInvoice.push(currentInvoiceId);
+                            //alert("pushed into array: " + currentInvoiceId);
+                            //alert("array content: " + globalSelectedInvoice);
+                        }else{
+                             //cari index of targetted children (row tu)
+                            var targetIndex = globalSelectedInvoice.findIndex(object=>{
+                                return this.value;
+                            });
+                            //alert("targetted delete: " + targetIndex);
+                            //alert("index found: " + targetIndex);
+                            //delete 1 element dekat index tu
+                            globalSelectedInvoice.splice(targetIndex, 1);
+                            //alert("removed from array: "+this.value);
+                            //alert("array content: " + globalSelectedInvoice);
+                        }
+                    });
+
+                    colAction.appendChild(newCheckBox);
+
+                    
+
+                    n++; targetRow++;
+                }
+            }
+        }                         
+    }
+            
+    xmlhttp.open("GET", "../db.php?type=fetchAllInvoice", true);
+
+    //alert("paramter sent: " + input);
+    xmlhttp.send();
+}
+
+function alterInvoices(action){
+
+    if(globalSelectedInvoice.length > 0){
+        //alert("input isnt null!");
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    //alert("Aduan Inserted!")
+                    clearTable("invoiceTable");
+                    fetchAllInvoice();
+                }else{
+
+                }
+            }                         
+        }   
+        //document.write("meow");
+    //alert("sampai dekat sini!");
+        //alert(globalCurrentUser);
+        xmlhttp.open("GET", "../db.php?a=" + action + "&type=alterInvoices" + "&t=" + globalSelectedInvoice.toString() +"", true);
+        //alert(globalSelectedInvoice);
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
+    }else{
+        alert("Select invoice(s) first!");
+    }
+        
 }
