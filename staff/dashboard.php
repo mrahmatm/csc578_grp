@@ -11,7 +11,7 @@
         include "common.php";
         //remarks: kena include hok one folder up sbb benda alah ni dalam folder
         $currentUser = $_SESSION["currentUser"];
-        echo "<script>alert('current session: ' + ".$currentUser.")</script>";
+        //echo "<script>alert('current session: ' + ".$currentUser.")</script>";
     ?>
 </head>
 <body>

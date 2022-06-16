@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 14, 2022 at 03:52 PM
+-- Generation Time: Jun 16, 2022 at 01:13 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -48,7 +48,9 @@ INSERT INTO `complaint` (`complaint_id`, `parent_icNum`, `complaint_title`, `com
 (9, 'root', 'nnn', 'nnn'),
 (10, 'root', 'bb', 'bb'),
 (11, '123456789', 'vvv', 'vvv'),
-(12, '987654', 'new complaint', 'nnn');
+(12, '987654', 'new complaint', 'nnn'),
+(13, '123456789', 'aduan baru', 'meowwww'),
+(14, '000123456789', 'new report', 'anak saya lapar');
 
 -- --------------------------------------------------------
 
@@ -60,16 +62,21 @@ CREATE TABLE `invoice` (
   `invoice_id` int(10) NOT NULL,
   `student_BC` varchar(10) NOT NULL,
   `invoice_status` varchar(30) NOT NULL,
-  `invoice_year` year(4) NOT NULL
+  `invoice_year` year(4) NOT NULL,
+  `invoice_attach` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `invoice`
 --
 
-INSERT INTO `invoice` (`invoice_id`, `student_BC`, `invoice_status`, `invoice_year`) VALUES
-(1, 'ABC123', 'PENDING', 2022),
-(2, 'ABC456', 'PENDING', 2022);
+INSERT INTO `invoice` (`invoice_id`, `student_BC`, `invoice_status`, `invoice_year`, `invoice_attach`) VALUES
+(6, 'ABC123', 'PENDING', 2023, NULL),
+(7, 'ABC456', 'PENDING', 2023, NULL),
+(8, 'ABC789', 'PENDING', 2023, NULL),
+(9, 'DEF123', 'PENDING', 2023, NULL),
+(10, 'DEF456', 'PENDING', 2023, NULL),
+(11, 'DEF789', 'PENDING', 2023, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,7 +97,10 @@ CREATE TABLE `parent` (
 --
 
 INSERT INTO `parent` (`parent_icNum`, `parent_name`, `parent_email`, `parent_phone`, `parent_password`) VALUES
-('123456789', 'orang', 'master@gmail.com', '', 'master');
+('000123456789', 'Hyolyn', 'hyo@gmail.com', '0123456789', 'meow'),
+('123456789', 'orang', 'master@gmail.com', '', 'master'),
+('13579', 'siti', 'siti@gmail.com', '01987654', 'password123'),
+('246810', 'ali', 'ali@gmail.com', '0123456789', 'password');
 
 -- --------------------------------------------------------
 
@@ -129,8 +139,12 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
-('ABC123', 'eunha', '123456789'),
-('ABC456', 'umji', NULL);
+('ABC123', 'eunha', '000123456789'),
+('ABC456', 'umji', '000123456789'),
+('ABC789', 'sowon', NULL),
+('DEF123', 'sinb', NULL),
+('DEF456', 'yuju', NULL),
+('DEF789', 'yerin', NULL);
 
 --
 -- Indexes for dumped tables
@@ -176,13 +190,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `complaint_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `invoice_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

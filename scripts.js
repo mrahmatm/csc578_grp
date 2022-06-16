@@ -10,7 +10,7 @@ function checkConfirmPass(input1, input2, targetDiv){
         response.innerHTML = "";
         document.getElementById("btnSubmit").removeAttribute("disabled");
     }else{
-        response.innerHTML = "x sama anat";
+        response.innerHTML = "Password does not match!";
         document.getElementById("btnSubmit").disabled = true;
         //document.getElementById("checkStr").disabled = true;
     }
@@ -247,6 +247,43 @@ function submitSignUp(){
     alert("sabar ni x siap lg (otp)");
     //submit array of children
     //submit each field of input
+    var name = document.getElementById("inputName").value;
+    var email = document.getElementById("inputEmail").value;
+    var phone = document.getElementById("inputPhone").value;
+    var password = document.getElementById("inputPassword").value;
+    var IC = document.getElementById("inputIC").value;
+
+    if(!email.includes("@") && !email.includes(".")){
+        alert("invalid email address!");
+        return;
+    }
+
+    if(phone.length < 9){
+        alert("invalid phone number lenght!");
+        return;
+    }
+
+    var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    alert("Account Created! Please proceed to log in.")
+                }
+            }                         
+        }
+                
+        //document.write("meow");
+    
+    //alert("sampai dekat sini!");
+        //alert(globalCurrentUser);
+        xmlhttp.open("GET", "db.php?name=" + name + "&email=" + email + "&phone=" + phone
+        + "&password=" + password + "&children=" + JSON.stringify(globalChildren) + "&ic=" + IC
+        + "&type=createParentAccount", true);
+        //alert(JSON.parse(globalChildren));
+        //alert("paramter sent: " + input);
+        xmlhttp.send();
 }
 
 function submitAduan(){
@@ -402,7 +439,7 @@ function fetchChildren(){
 
 function fetchInvoice(){
     var xmlhttp = new XMLHttpRequest();
-
+    globalSelectedInvoice = [];
     xmlhttp.onreadystatechange = function(){
 
         if(this.readyState == 4 && this.status == 200){
@@ -413,12 +450,13 @@ function fetchInvoice(){
             //note: dia jadi array
             //alert();
             if(status === "1"){
-                var tempString = tempArray[1].substring(1, tempArray[1].length-1);
-                //alert(tempString);
-                var results = tempString; 
-                var results1 = tempArray[2];
+                var results = tempArray[1];
                 var convertResult = JSON.parse(results);
+                alert(convertResult);
+                
+                var results1 = tempArray[2];
                 var studentResult = JSON.parse(results1);
+                alert(studentResult);
                 //alert (convertResult.invoice_id);
                 //alert("Data fetched!"+convertResult);
                 var table = document.getElementById("billTable");

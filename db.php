@@ -205,6 +205,35 @@
         }else{
             echo "0";
         }
+    //end of generate invoice
+    }else if(strstr($type, "createParentAccount")){
+        $name = $_REQUEST['name'];
+        $email = $_REQUEST['email'];
+        $phone = $_REQUEST['phone'];
+        $password = $_REQUEST['password'];
+        $ic = $_REQUEST['ic'];
+
+        $children = json_decode($_REQUEST['children']);
+        
+        require "connect.php";
+        $stmt = $pdo->prepare("INSERT INTO parent(parent_icNum, parent_name, parent_email, parent_phone, parent_password) VALUES(?, ?, ?, ?, ?)");
+        
+            if($stmt->execute([$ic, $name, $email, $phone, $password])){
+                $status = "1";
+                foreach($children as $child){
+
+                    $stmt = $pdo->prepare("UPDATE student SET parent_icNum =:parentIC WHERE student_BC=:studentBC");
+
+                    if($stmt->execute(["parentIC"=>$ic, "studentBC"=>$child->student_BC]))
+                        $status = "1";
+                    else
+                        $status = "0";
+                }
+            }else{
+                $status = "0";
+            }
+
+            echo $status;
     }
     
 
