@@ -18,22 +18,49 @@
         </script>";
         include "common.php";
     ?>
+
+    <script>
+        window.onload = fetchChildren('addChk');
+        window.onload = fetchCurrentUserInfo();
+    </script>
 </head>
 <body>
     <h5>update account page</h5>
     <div>
-        <input type="checkbox" id="toggleEdit">
+        <br><h6>edit kau</h6><br>
+        <input type="checkbox" id="toggleEdit" onchange="toggleEditMode('inputClass', 'toggleEdit')">
         <label for="toggleEdit">Edit Credentials</label><br>
         <label for="inputName">Name: </label>
-        <input type="text" id="inputName" disabled>
+        <input type="text" id="inputName" disabled class="inputClass">
         <label for="inputIC">IC: </label>
-        <input type="text" id="inputIC" disabled>
+        <input type="text" id="inputIC" disabled class="inputClass">
         <label for="inputEmail">Email: </label>
-        <input type="text" id="inputEmail" disabled>
+        <input type="text" id="inputEmail" disabled class="inputClass">
         <label for="inputPhone">Phone Number: </label>
-        <input type="text" id="inputPhone" disabled>
+        <input type="text" id="inputPhone" disabled class="inputClass">
         <label for="inputPassword">Password: </label>
-        <input type="password" disabled>
+        <input type="password" disabled class="inputClass" id="inputPassword"><br>
     </div>
+
+    <div>
+        <br><h6>edit anak</h6><br>
+        <table id="childrenTable">
+            <tr>
+                <th>Name</th><th>BC</th><th>Select</th>
+            </tr>
+        </table><br>
+        <button id="btnDelete" onclick="removeChildren()">Delete</button>
+    </div>
+    <div><br>
+                    <h4>search anak kau</h4><br>
+                    <label for="searchBC">Enter Birth Cert Number: </label>
+                    <input type="text" id="searchBC" onkeyup="searchBC(this.value, 'tak null')"><br>
+                    <h6>Search result:</h6>
+                    <label for="displayName">Nama: </label>
+                    <input type="text" disabled id="displayName">
+                    <label for="displayBC">BC: </label>
+                    <input type="text" disabled id="displayBC"><br>
+                    <button id="addChild" onclick="registerChild()" disabled>Add</button>
+    </div><br>
 </body>
 </html>

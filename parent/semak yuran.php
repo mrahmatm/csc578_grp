@@ -19,7 +19,7 @@
         </script>";
     ?>
     <script>
-        window.onload = fetchChildren();
+        window.onload = fetchChildren('none');
         window.onload = fetchInvoice();
     </script>
 </head>

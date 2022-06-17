@@ -234,6 +234,65 @@
             }
 
             echo $status;
+    //end of create parent account
+    }else if(strstr($type, "fetchCurrentUserInfo")){
+        $user1 = $_REQUEST['u'];
+        //echo $user1." ";
+        require "connect.php";
+        $stmt = $pdo->prepare("SELECT parent_icNum, parent_name, parent_email, parent_phone, parent_password FROM parent WHERE parent_icNum = ?");
+        $stmt->execute([$user1]);
+        $result = $stmt->fetch();
+        
+        if($result != null){
+            echo "1*".json_encode($result);
+            
+        }else{
+            echo "0";
+        }
+
+    //end of fetch current user info
+    }else if(strstr($type, "removeChildren")){
+        $target = $_REQUEST['t'];
+
+        //echo gettype($target);
+        
+        $targetArray = explode(",", $target);
+        
+        $n = 0;
+        $queryCondition = " WHERE ";
+        //build WHERE clause
+        while($n < sizeof($targetArray)){
+            if($n!=0)
+                $queryCondition .= " OR ";
+
+            $queryCondition .= "student_BC = '".strval($targetArray[$n])."'";
+            $n+=1;
+        }
+
+        require "connect.php";
+        $query = "UPDATE student SET parent_icNum = null" . $queryCondition; 
+        //echo $query;      
+        $stmt = $pdo->prepare($query);       
+        if($stmt->execute()){
+            echo "1";
+        }else{
+            echo "0";
+        }
+    //end of remove children
+    }else if(strstr($type, "registerChild")){
+        $target = $_REQUEST['t'];
+        $parent = $_REQUEST['p'];
+        
+        require "connect.php";
+
+        $stmt = $pdo->prepare("UPDATE student SET parent_icNum =:parentIC WHERE student_BC=:studentBC");
+
+        if($stmt->execute(["parentIC"=>$parent, "studentBC"=>$target]))
+            $status = "1";
+        else
+            $status = "0";
+
+        echo $status;
     }
     
 

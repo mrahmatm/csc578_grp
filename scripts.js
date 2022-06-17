@@ -122,7 +122,7 @@ function verifyLogIn(){
 var globalName, globalBC;
 var globalChildren = Array();
 
-function searchBC(input){
+function searchBC(input, location){
     if(input.length == 0){
         //letak if input area null
         //alert("this cannot be null!");
@@ -157,8 +157,10 @@ function searchBC(input){
         //document.write("meow");
     };
     //alert("sampai dekat sini!");
-
-        xmlhttp.open("GET", "db.php?bc=" + input + "&type=searchBC", true);
+        if(location != null){
+            xmlhttp.open("GET", "../db.php?bc=" + input + "&type=searchBC", true);
+        }else
+            xmlhttp.open("GET", "db.php?bc=" + input + "&type=searchBC", true);
 
         //alert("paramter sent: " + input);
         xmlhttp.send();
@@ -395,7 +397,9 @@ function clearTable(target){
     }
 }
 
-function fetchChildren(){
+var globalSelectedChildren = Array();
+
+function fetchChildren(actions){
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function(){
@@ -425,8 +429,40 @@ function fetchChildren(){
                     colName.innerHTML = convertResult[n].student_name;
                     colBC.innerHTML = convertResult[n].student_BC;
 
+                    if(actions === "addChk"){
+                        var colChk = newRow.insertCell(2);
+
+                        var newCheckBox = document.createElement('input');
+                        newCheckBox.type = 'checkbox';
+                        newCheckBox.id = 'chk' + convertResult[n].student_BC;
+                        newCheckBox.value = convertResult[n].student_BC;
+
+                        newCheckBox.addEventListener("change", function(){
+                            
+                            var currentBC = this.value;
+                            if(this.checked){
+                                globalSelectedChildren.push(currentBC);
+                            }else{
+                                //cari index of targetted children (row tu)
+                                var targetIndex = globalSelectedChildren.findIndex(object=>{
+                                    return this.value;
+                                });
+                                //delete 1 element dekat index tu
+                                globalSelectedChildren.splice(targetIndex, 1);
+
+                            }
+
+                            //alert(globalSelectedChildren.toString());
+                    });
+
+                    colChk.appendChild(newCheckBox);
+
+                    }
+                    
                     n++; targetRow++;
                 }
+
+                
             }
         }                         
     }
@@ -638,4 +674,104 @@ function generateInvoices(){
     }else{
         alert("Year cannot be empty!");
     }
+}
+
+function toggleEditMode(targetClass, inputChk){
+    //make sure bagi nama class of input fields dengan id toggle checkbox
+
+    var classElements = document.getElementsByClassName(targetClass);
+    var checkbox = document.getElementById(inputChk);
+
+    var n = 0;
+    while(n < classElements.length){
+
+        if(checkbox.checked){
+            classElements[n].removeAttribute("disabled");
+        }        
+        else{
+            classElements[n].disabled = true;
+            document.getElementById("inputName").value = globalHoldCurrentUserInfo["parent_name"];
+            document.getElementById("inputIC").value = globalHoldCurrentUserInfo["parent_icNum"];
+            document.getElementById("inputEmail").value = globalHoldCurrentUserInfo["parent_email"];
+            document.getElementById("inputPhone").value = globalHoldCurrentUserInfo["parent_phone"];
+            document.getElementById("inputPassword").value = globalHoldCurrentUserInfo["parent_password"];
+        }
+        
+        
+        n++;
+    }
+}
+
+var globalHoldCurrentUserInfo;
+
+function fetchCurrentUserInfo(){
+    var xmlhttp = new XMLHttpRequest();
+    globalSelectedInvoice = [];
+    xmlhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*"); 
+            //alert(tempArray); 
+            var status = tempArray[0];
+            //note: dia jadi array
+            //alert();
+            if(status === "1"){
+                var results = tempArray[1];
+                var convertResult = JSON.parse(results);
+                globalHoldCurrentUserInfo = convertResult;
+                //alert(convertResult);
+                document.getElementById("inputName").value = convertResult["parent_name"];
+                document.getElementById("inputIC").value = convertResult["parent_icNum"];
+                document.getElementById("inputEmail").value = convertResult["parent_email"];
+                document.getElementById("inputPhone").value = convertResult["parent_phone"];
+                document.getElementById("inputPassword").value = convertResult["parent_password"];
+                
+            }
+        }                         
+    }
+    //alert("'"+ globalCurrentUser + "'"); 
+    xmlhttp.open("GET", "../db.php?type=fetchCurrentUserInfo" + "&u=" + globalCurrentUser, true);
+
+    //alert("paramter sent: " + input);
+    xmlhttp.send();
+}
+
+function removeChildren(){
+    var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    clearTable("childrenTable");
+                    fetchChildren('addChk');
+                }else{
+
+                }
+            }                         
+        }   
+
+        xmlhttp.open("GET", "../db.php?type=removeChildren" + "&t=" + globalSelectedChildren.toString(), true);
+        xmlhttp.send();
+}
+
+function registerChild(){
+    
+    var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    clearTable("childrenTable");
+                    fetchChildren('addChk');
+                }else{
+
+                }
+            }                         
+        }   
+
+        xmlhttp.open("GET", "../db.php?type=registerChild" + "&t=" + document.getElementById("displayBC").value+ "&p=" + globalCurrentUser, true);
+        xmlhttp.send();
 }
