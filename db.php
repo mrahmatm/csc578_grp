@@ -293,6 +293,23 @@
             $status = "0";
 
         echo $status;
+    //end of register child
+    }else if(strstr($type, "updateUserAccount")){
+        $target = $_REQUEST['t'];
+        $updates = $_REQUEST['c'];
+        $converted = json_decode($updates);
+        //echo $converted->parent_name;
+
+        require "connect.php";
+
+        $stmt = $pdo->prepare("UPDATE parent SET parent_icNum =:parent_icNum, parent_name=:parent_name, parent_email=:parent_email, parent_phone=:parent_phone, parent_password=:parent_password WHERE parent_icNum=:currentIC");
+
+        if($stmt->execute(["parent_icNum"=>$converted->parent_icNum, "parent_name"=>$converted->parent_name, "parent_email"=>$converted->parent_email, "parent_phone"=>$converted->parent_phone, "parent_password"=>$converted->parent_password, "currentIC"=>$target]))
+            $status = "1";
+        else
+            $status = "0";
+
+        echo $status;
     }
     
 

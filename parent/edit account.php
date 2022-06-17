@@ -39,7 +39,8 @@
         <label for="inputPhone">Phone Number: </label>
         <input type="text" id="inputPhone" disabled class="inputClass">
         <label for="inputPassword">Password: </label>
-        <input type="password" disabled class="inputClass" id="inputPassword"><br>
+        <input type="password" disabled class="inputClass" id="inputPassword"><br><br>
+        <button id="btnUpdateAccount" onclick="updateUserAccount()" disabled class="inputClass"">Save Changes</button>
     </div>
 
     <div>

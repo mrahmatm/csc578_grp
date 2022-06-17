@@ -775,3 +775,30 @@ function registerChild(){
         xmlhttp.open("GET", "../db.php?type=registerChild" + "&t=" + document.getElementById("displayBC").value+ "&p=" + globalCurrentUser, true);
         xmlhttp.send();
 }
+
+function updateUserAccount(){
+    var updateAccount = {
+        parent_icNum : document.getElementById("inputIC").value,
+        parent_name : document.getElementById("inputName").value,
+        parent_email : document.getElementById("inputEmail").value,
+        parent_phone : document.getElementById("inputPhone").value,
+        parent_password : document.getElementById("inputPassword").value,
+    };
+
+    var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText == 1){
+                    fetchCurrentUserInfo();
+                    document.getElementById("toggleEdit").click();
+                }else{
+
+                }
+            }                         
+        }   
+        //alert(JSON.stringify(updateAccount));
+        xmlhttp.open("GET", "../db.php?type=updateUserAccount" + "&t=" +globalCurrentUser + "&c=" + JSON.stringify(updateAccount), true);
+        xmlhttp.send();
+}
