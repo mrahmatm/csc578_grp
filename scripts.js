@@ -589,6 +589,7 @@ function alterInvoices(action){
                 if(this.responseText == 1){
                     //alert("Aduan Inserted!")
                     clearTable("invoiceTable");
+                    globalSelectedInvoice.splice(0, globalSelectedInvoice.length);
                     fetchAllInvoice();
                 }else{
 
