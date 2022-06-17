@@ -791,6 +791,9 @@ function updateUserAccount(){
             if(this.readyState == 4 && this.status == 200){
                 //alert("code: " + code);
                 if(this.responseText == 1){
+                    var userNew = updateAccount.parent_icNum;
+                    '<%Session["UserName"] = "' + userNew + '"; %>';
+                    globalCurrentUser = updateAccount.parent_icNum;
                     fetchCurrentUserInfo();
                     document.getElementById("toggleEdit").click();
                 }else{
