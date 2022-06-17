@@ -33,7 +33,7 @@
                     <th>Name</th><th>BC</th>
                 </tr>
             </table><br>
-            <p>bukan anak kau? ha pegi sini <a href="">[link]</a></p>
+            <p>bukan anak kau? ha pegi sini <a href="edit account.php">[link]</a></p>
         </div>
         <div>
             <h5>ha bayar2:</h5>
