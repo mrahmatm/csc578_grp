@@ -21,7 +21,7 @@
             font-size: 100px;
         }
         .container{
-            margin-left: 500px;
+            text-align: center;
         }
         a.nav-link:link
         {
@@ -60,8 +60,8 @@
     
 
 
-    <h1>SMKBPJ</h1>
-    <img src="logo.png" alt="Logo Sekolah" width="150" height="200"  >
+    <h1>SKSA</h1>
+    <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
      <div class="container">   
     
      

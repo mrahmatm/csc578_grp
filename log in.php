@@ -13,20 +13,47 @@
 </head>
 <body>
     <style>
-        
+        body{
+            background-image: url("web.jpg");
+            background-color: #cccccc;
+        }
+        .container{
+            text-align: center;
+            font-size: 18px;
+            
+        }
+        h1 {text-align: center;
+            margin-top: 40px;
+            font-family: 'Courier New', monospace;
+            font-size: 100px;
+        }
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .radio{
+            font-size: 19px;
+            margin-top: 10px;
+
+        }
+ 
     </style>
     <div>
-            <div>
+        <h1>SKSA</h1>
+        <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
+            <div class="container">
                 <label for="inputUsername">Username: </label>
-                <input type="text" id="inputUsername">
+                <input type="text" id="inputUsername"><br> <br>
                 <label for="inputPassword">Password: </label>
                 <input type="password" id="inputPassword">
-                <div>
+                <div class="radio">
                     <input type="radio" name="userType" value="staff" id="radStaff">
-                    <label for="radStaff">Staff</label>
-                    <input type="radio" name="userType" value="parent" id="radParent">
+                    <label for="radStaff">Staff</label> 
+                    <input type="radio" name="userType" value="parent" id="radParent" style= "margin-left: 50px";>
                     <label for="radParent">Parent</label>
                 </div>
+                <br>
                 <button id="btnLogin" onclick="verifyLogIn()">Submit</button>
             </div>
     </div>
