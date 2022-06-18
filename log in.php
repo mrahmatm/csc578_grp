@@ -41,7 +41,7 @@
     </style>
     <div>
         <h1>SKSA</h1>
-        <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
+        <img src="logo.png" alt="Logo Sekolah" width="150" height="150"  >
             <div class="container">
                 <label for="inputUsername">Username: </label>
                 <input type="text" id="inputUsername"><br> <br>

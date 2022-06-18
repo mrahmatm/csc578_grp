@@ -54,6 +54,11 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .space {
+        width: 150px;
+        height: auto;
+        display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -62,17 +67,15 @@
 
     <h1>SKSA</h1>
     <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
-     <div class="container">   
-    
-     
-    <button>
-     <a href="log in.php" class="nav-link">Log In
-        
-    </a></button>
-    
-    <button style="margin-left: 200px";>
-    <a href="sign up.php" class="nav-link">Sign Up</a>
-    </button>
+    <div class="container" style="margin-left: 105px">    
+        <button>
+        <a href="log in.php" class="nav-link">Log In</a>    
+        </button>
+        <div>
+        </div>
+        <button>
+        <a href="sign up.php" class="nav-link">Sign Up</a>
+        </button>
     </div> 
 </body>
 </html>
