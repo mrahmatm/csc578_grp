@@ -18,8 +18,10 @@
             background-color: #cccccc;
         }
         .container{
+            margin-left:100px;
             text-align: center;
             font-size: 18px;
+
             
         }
         h1 {text-align: center;
