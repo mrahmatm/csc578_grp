@@ -48,6 +48,7 @@
             width: 150px;
             height: 50px;
             font-size: 20px;
+            display: inline-block;
         }
         img{
             display: block;
@@ -71,8 +72,7 @@
         <button>
         <a href="log in.php" class="nav-link">Log In</a>    
         </button>
-        <div>
-        </div>
+
         <button>
         <a href="sign up.php" class="nav-link">Sign Up</a>
         </button>
