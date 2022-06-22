@@ -488,11 +488,11 @@ function fetchInvoice(){
             if(status === "1"){
                 var results = tempArray[1];
                 var convertResult = JSON.parse(results);
-                alert(convertResult);
+                //alert(convertResult);
                 
                 var results1 = tempArray[2];
                 var studentResult = JSON.parse(results1);
-                alert(studentResult);
+                //alert(studentResult);
                 //alert (convertResult.invoice_id);
                 //alert("Data fetched!"+convertResult);
                 var table = document.getElementById("billTable");
@@ -547,7 +547,7 @@ function fetchAllInvoice(){
             //alert();
 
             if(status === "1"){
-                var results = JSON.parse(tempArray[1]);
+                var results = tempArray[1];
                 //alert (convertResult.invoice_id);
                 //alert("Data fetched!"+convertResult);             
                 var table = document.getElementById("invoiceTable");
@@ -598,9 +598,6 @@ function fetchAllInvoice(){
                     });
 
                     colAction.appendChild(newCheckBox);
-
-                    
-
                     n++; targetRow++;
                 }
             }

@@ -20,6 +20,9 @@
     ?>
     <script>
         window.onload = fetchAduan();
+        window.setInterval(function(){
+            fetchAduan();
+        }, 3000);
     </script>
 </head>
 <body>

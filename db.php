@@ -110,8 +110,8 @@
                 $stmt = $pdo->prepare("SELECT * FROM invoice WHERE student_BC=:input");     
                 $stmt->execute(['input'=>$currentBC]);
                 //echo "current bc: ".$currentBC;
-                $result = $stmt->fetchAll();
-                
+                $result = $stmt->fetch();
+                //$result = substr($result, 1, strlen($result)-1);
                 array_push($resultInvoice, $result);
             }     
             echo "1*".json_encode($resultInvoice)."*".json_encode($resultStudent);           
