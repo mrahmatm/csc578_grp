@@ -604,7 +604,8 @@ function fetchAllInvoice(){
     }
             
 
-        xmlhttp.open("GET", "../db.php?type=fetchAllInvoice&t="+document.getElementById("inputSearch").value, true);
+        xmlhttp.open("GET", "../db.php?type=fetchAllInvoice&t="+document.getElementById("inputSearch").value+
+        "&s="+document.getElementById("sortType").value, true);
 
     //alert("paramter sent: " + input);
     xmlhttp.send();

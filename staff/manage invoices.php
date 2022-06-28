@@ -27,7 +27,15 @@
 <body>
     <h2>manage invoice</h2><br>
     <label for="inputSearch">Search:</label>
-    <input type="text" id="inputSearch" onkeyup="fetchAllInvoice()"><br>
+    <input type="text" id="inputSearch" onkeyup="fetchAllInvoice()" autofocus>
+    <label for="inputSearch"> (by student BC)</label><br>
+    <label for="sortType">Sort by: </label>
+    <select name="sortType" id="sortType" onchange="fetchAllInvoice()">
+        <option value="-" selected>-</option>
+        <option value="student_BC">BC</option>
+        <option value="invoice_year">Year</option>
+        <option value="invoice_status">Status</option>
+    </select><br>
     <div>
         <table id="invoiceTable">
             <tr>

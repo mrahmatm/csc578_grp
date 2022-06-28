@@ -127,11 +127,17 @@
         require "connect.php";
         
         $target = $_REQUEST['t'];
+        $sort = $_REQUEST['s'];
+
+        
 
         if(!strstr($target, "0"))
-            $condition = " WHERE student_BC LIKE '".$target."%'";
+            $condition = " WHERE student_BC LIKE '%".$target."%'";
         else
             $condition = "";
+
+        if(!strstr($sort, "-"))
+            $condition .= " ORDER BY ".$sort;
 
         $stmt = $pdo->prepare("SELECT * FROM invoice".$condition);     
         $stmt->execute();
