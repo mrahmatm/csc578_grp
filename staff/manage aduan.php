@@ -19,7 +19,9 @@
         </script>";
     ?>
     <script>
-        window.onload = fetchAduan();
+        window.onload = function(){
+            fetchAduan();
+}
         window.setInterval(function(){
             fetchAduan();
         }, 3000);
@@ -28,7 +30,10 @@
 <body>
     <h2>manage aduan</h2>
     <div>
-        <button id="btnRefresh" onclick="fetchAduan()">Refresh</button>
+        <button id="btnRefresh" onclick="fetchAduan()">Refresh</button><br>
+        <label for="displayLimiter">Displaying the first </label>
+        <input type="number" step="5" min="10" value="10" id="displayLimiter">
+        <label for="displayLimiter"> entries.</label>
         <div>
             <table id="tableAduan">
                 <th>ID</th><th>Title</th><th>Username</th><th>Description</th>

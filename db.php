@@ -64,7 +64,10 @@
     }else if(strstr($type, "fetchAduan")){
 
         require "connect.php";
-        $stmt = $pdo->prepare("SELECT * FROM complaint");     
+
+        $limit = $_REQUEST['d'];
+
+        $stmt = $pdo->prepare("SELECT * FROM complaint LIMIT ".$limit);     
         $stmt->execute();
         $result = $stmt->fetchAll();
             if($result != null){
@@ -111,6 +114,7 @@
                 $stmt->execute(['input'=>$currentBC]);
                 //echo "current bc: ".$currentBC;
                 $result = $stmt->fetch();
+
                 //$result = substr($result, 1, strlen($result)-1);
                 array_push($resultInvoice, $result);
             }     
@@ -311,6 +315,22 @@
 
         echo $status;
     //end of update user(parent) account
+    }else if(strstr($type, "fetchInvoiceByYear")){
+        require "connect.php";
+        $parentIC = $_REQUEST['p'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum=:parent");     
+        $stmt->execute(["parent"=>$parentIC]);
+        $resultStudent = $stmt->fetchAll();
+        $resultInvoice = (array)null;
+        
+        if($resultStudent != null){               
+                
+            
+            echo "1*".json_encode($resultInvoice);           
+        }else{
+            echo "0";
+        }
     }
     
 

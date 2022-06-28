@@ -36,12 +36,21 @@
             <p>bukan anak kau? ha pegi sini <a href="edit account.php">[link]</a></p>
         </div>
         <div>
-            <h5>ha bayar2:</h5>
+            <h5>list semua invoice anak2:</h5>
             <table id="billTable">
                 <tr>
-                    <th>ID</th><th>Year</th><th>BC</th><th>Name</th><th>Status</th><th>Action</th>
+                    <th>ID</th><th>Year</th><th>BC</th><th>Name</th><th>Status</th>
                 </tr>
             </table><br>
+        </div>
+        <div>
+            <h5>list tahun2</h5>
+            <table id="billYearTable">
+                <tr>
+                    <th>Year</th><th>Action</th>
+                </tr>
+            </table>
+            <button>Submit</button>
         </div>
     </div>
 </body>
