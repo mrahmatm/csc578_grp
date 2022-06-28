@@ -603,7 +603,6 @@ function fetchAllInvoice(){
         }                         
     }
             
-
         xmlhttp.open("GET", "../db.php?type=fetchAllInvoice&t="+document.getElementById("inputSearch").value+
         "&s="+document.getElementById("sortType").value, true);
 

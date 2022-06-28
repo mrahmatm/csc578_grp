@@ -127,9 +127,7 @@
         require "connect.php";
         
         $target = $_REQUEST['t'];
-        $sort = $_REQUEST['s'];
-
-        
+        $sort = $_REQUEST['s'];  
 
         if(!strstr($target, "0"))
             $condition = " WHERE student_BC LIKE '%".$target."%'";
