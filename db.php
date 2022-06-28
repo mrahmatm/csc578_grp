@@ -126,7 +126,14 @@
     }else if(strstr($type, "fetchAllInvoice")){
         require "connect.php";
         
-        $stmt = $pdo->prepare("SELECT * FROM invoice");     
+        $target = $_REQUEST['t'];
+
+        if(!strstr($target, "0"))
+            $condition = " WHERE student_BC LIKE '".$target."%'";
+        else
+            $condition = "";
+
+        $stmt = $pdo->prepare("SELECT * FROM invoice".$condition);     
         $stmt->execute();
         $result = $stmt->fetchAll();
         if($result != null){

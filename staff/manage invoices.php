@@ -19,11 +19,15 @@
         </script>";
     ?>
     <script>
-        window.onload   = fetchAllInvoice();
+        window.onload = function(){
+            fetchAllInvoice();
+}
     </script>
 </head>
 <body>
     <h2>manage invoice</h2><br>
+    <label for="inputSearch">Search:</label>
+    <input type="text" id="inputSearch" onkeyup="fetchAllInvoice()"><br>
     <div>
         <table id="invoiceTable">
             <tr>

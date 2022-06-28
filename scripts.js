@@ -537,6 +537,7 @@ function fetchAllInvoice(){
     xmlhttp.onreadystatechange = function(){
 
         if(this.readyState == 4 && this.status == 200){
+            clearTable('invoiceTable');
             //alert("code: " + code);
             var tempArray = this.responseText.split("*"); 
             //alert(tempArray); 
@@ -602,7 +603,8 @@ function fetchAllInvoice(){
         }                         
     }
             
-    xmlhttp.open("GET", "../db.php?type=fetchAllInvoice", true);
+
+        xmlhttp.open("GET", "../db.php?type=fetchAllInvoice&t="+document.getElementById("inputSearch").value, true);
 
     //alert("paramter sent: " + input);
     xmlhttp.send();
