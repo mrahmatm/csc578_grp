@@ -96,7 +96,7 @@
         require "connect.php";
         $parentIC = $_REQUEST['p'];
         
-        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum=:parent");     
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum=:parent ORDER BY student_BC");     
         $stmt->execute(["parent"=>$parentIC]);
         $resultStudent = $stmt->fetchAll();
         $resultInvoice = (array)null;
@@ -110,13 +110,15 @@
 
                 $currentBC = $student["student_BC"];
 
-                $stmt = $pdo->prepare("SELECT * FROM invoice WHERE student_BC=:input");     
+                $stmt = $pdo->prepare("SELECT * FROM invoice WHERE student_BC=:input ORDER BY student_BC, invoice_year");     
                 $stmt->execute(['input'=>$currentBC]);
                 //echo "current bc: ".$currentBC;
-                $result = $stmt->fetch();
+                $result = $stmt->fetchAll();
 
-                //$result = substr($result, 1, strlen($result)-1);
-                array_push($resultInvoice, $result);
+                foreach($result as $invoice)
+                    array_push($resultInvoice, $invoice);
+
+                //$result = substr($result, 1, strlen($result)-1);             
             }     
             echo "1*".json_encode($resultInvoice)."*".json_encode($resultStudent);           
         }else{

@@ -500,7 +500,7 @@ function fetchInvoice(){
                 //clearTable("childrenTable");
                 var targetRow = table.rows.length;
                 
-                var n = 0;
+                var n = 0, x = 0;
                 while(n < convertResult.length){
 
                     var newRow = table.insertRow(targetRow);
@@ -514,10 +514,14 @@ function fetchInvoice(){
                     colID.innerHTML = convertResult[n].invoice_id;
                     colYear.innerHTML = convertResult[n].invoice_year;
                     colBC.innerHTML = convertResult[n].student_BC;
-                    colName.innerHTML = studentResult[n].student_name;
+                    colName.innerHTML = studentResult[x].student_name;
                     colStatus.innerHTML = convertResult[n].invoice_status;
 
-                    n++; targetRow++;
+                    if(studentResult[x].student_BC !== convertResult[n+1].student_BC)
+                        x++;
+
+                    n++;
+                    targetRow++;
                 }
             }
         }                         
