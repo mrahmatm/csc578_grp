@@ -587,6 +587,7 @@ function fetchAllInvoice(){
 
                     var newCheckBox = document.createElement('input');
                     newCheckBox.type = 'checkbox';
+                    newCheckBox.classList.add("chkSelectInvoice");
                     newCheckBox.id = 'chk' + results[n].invoice_id;
                     newCheckBox.value = results[n].invoice_id;
 
@@ -947,9 +948,7 @@ function createModal(type, firstParam, secondParam, thirdParam){
                         createText.innerHTML = "Parent not Registered!";
                         createText.style.color = "red";
                         createContent.appendChild(createText);
-                    }
-
-                    
+                    }                
                 }
             }                         
         }
@@ -960,8 +959,6 @@ function createModal(type, firstParam, secondParam, thirdParam){
 
         createContent.appendChild(createTable);
     }
-
-    
 
     //show modal
     var modal = document.getElementById("currentModal");
@@ -981,4 +978,18 @@ function createModal(type, firstParam, secondParam, thirdParam){
 
 function destroyModal(){
     document.getElementById("currentModal").remove();
+}
+
+function selectAllChk(targetClass){
+    var targets = document.getElementsByClassName(targetClass);
+    var n = 0;
+    var currentItem;
+    while(n < targets.length){
+        currentItem = targets[n];
+        if(currentItem.checked == false)
+            currentItem.checked = true;
+        else
+            currentItem.checked = false;
+        n++;
+    }
 }

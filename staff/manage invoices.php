@@ -36,6 +36,7 @@
         <option value="invoice_year">Year</option>
         <option value="invoice_status">Status</option>
     </select><br>
+    <label for="chkSelectAll">Select All </label><input type="checkbox" id="chkSelectAll" onchange="selectAllChk('chkSelectInvoice')">
     <div>
         <table id="invoiceTable">
             <tr>
