@@ -59,5 +59,7 @@
         <input type="number" min="2022" max="2050" step="1" value="2022" id="inputYear" />
         <button id="btnGenerateInvoices" onclick="generateInvoices()">Generate</button>
     </div>
+    <br><br>
+    <button onclick="createModal()">Test modal</button>
 </body>
 </html>

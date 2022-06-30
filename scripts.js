@@ -565,10 +565,20 @@ function fetchAllInvoice(){
                     var colYear = newRow.insertCell(2);
                     var colStatus = newRow.insertCell(3);
                     var colAttachment = newRow.insertCell(4);
-                    var colAction = newRow.insertCell(5)
+                    var colAction = newRow.insertCell(5);
 
                     colID.innerHTML = results[n].invoice_id;
-                    colBC.innerHTML = results[n].student_BC;
+                    
+                    //colBC.innerHTML = results[n].student_BC;
+
+                    var createLink = document.createElement("a");
+                    createLink.innerHTML = results[n].student_BC;
+                    createLink.value = results[n].student_BC;
+                    //var temp = results[n].student_BC;
+                    createLink.onclick = function() {createModal("childrenParent", this.value);};
+                    createLink.href = "javascript:;";
+                    colBC.appendChild(createLink);
+
                     colYear.innerHTML = results[n].invoice_year;
                     colStatus.innerHTML = results[n].invoice_status;
                     colAttachment.innerHTML = results[n].invoice_attach;
@@ -848,4 +858,127 @@ function fetchInvoiceByYear(){
 
     //alert("paramter sent: " + input);
     xmlhttp.send();
+}
+
+function createModal(type, firstParam, secondParam, thirdParam){
+    const create = document.createElement("div");
+    create.setAttribute("id", "currentModal");
+    create.classList.add("modal")
+
+    const createContent = document.createElement("div");
+    createContent.classList.add("modal-content");
+
+    const createSpan = document.createElement("span");
+    createSpan.classList.add("close");
+    createSpan.innerHTML = "&times";
+
+    document.body.appendChild(create);
+    create.appendChild(createContent);
+    createContent.appendChild(createSpan);
+
+    //buat content modal dekat sini pastu appendChild dekat createContent
+    if(type === "childrenParent"){
+        var createTable = document.createElement("table");
+
+        var row1 = createTable.insertRow(0);
+        var colName = row1.insertCell(0);
+        colName.innerHTML = "Name";
+        var colNameData = row1.insertCell(1);
+        colNameData.innerHTML = ": ";
+
+        var row2 = createTable.insertRow(1);
+        var colBC = row2.insertCell(0);
+        colBC.innerHTML = "BC";
+        var colBCData = row2.insertCell(1);
+        colBCData.innerHTML = ": ";
+
+        var row3 = createTable.insertRow(2);
+        var colParentName = row3.insertCell(0);
+        colParentName.innerHTML = "Parent Name";
+        var colParentNameData = row3.insertCell(1);
+        colParentNameData.innerHTML = ": ";
+
+        var row4 = createTable.insertRow(3);
+        var colParentIC = row4.insertCell(0);
+        colParentIC.innerHTML = "IC";
+        var colParentICData = row4.insertCell(1);
+        colParentICData.innerHTML = ": ";
+
+        var row5 = createTable.insertRow(4);
+        var colParentPhone = row5.insertCell(0);
+        colParentPhone.innerHTML = "Phone";
+        var colParentPhoneData = row5.insertCell(1);
+        colParentPhoneData.innerHTML = ": ";
+
+        var row6 = createTable.insertRow(5);
+        var colParentEmail = row6.insertCell(0);
+        colParentEmail.innerHTML = "Email";
+        var colParentEmailData = row6.insertCell(1);
+        colParentEmailData.innerHTML = ": ";
+
+        //var col1 = document.createElement("td");
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function(){
+
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                var tempArray = this.responseText.split("*"); 
+                //alert(tempArray); 
+                var status = tempArray[0];
+                //note: dia jadi array
+                //alert();
+
+                if(status === "1"){
+                    var student = JSON.parse(tempArray[1]);
+                    var parent = JSON.parse(tempArray[2]);
+                    
+                    colNameData.innerHTML += student.student_name;
+                    colBCData.innerHTML += student.student_BC;
+
+                    if(parent !== false){
+                        colParentNameData.innerHTML += parent.parent_name;
+                        colParentICData.innerHTML += parent.parent_icNum;
+                        colParentPhoneData.innerHTML += parent.parent_phone;
+                        colParentEmailData.innerHTML += parent.parent_email;
+                    }else{
+                        const createText = document.createElement("p");
+                        createText.innerHTML = "Parent not Registered!";
+                        createText.style.color = "red";
+                        createContent.appendChild(createText);
+                    }
+
+                    
+                }
+            }                         
+        }
+            
+        xmlhttp.open("GET", "../db.php?type=fetchAllChildInfo&t="+firstParam, true);
+
+        xmlhttp.send();
+
+        createContent.appendChild(createTable);
+    }
+
+    
+
+    //show modal
+    var modal = document.getElementById("currentModal");
+    modal.style.display = "block";
+
+    var span = document.getElementsByClassName("close")[0];
+    span.addEventListener("click", function(){
+        destroyModal();
+    })
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            destroyModal();
+        }
+    }
+}
+
+function destroyModal(){
+    document.getElementById("currentModal").remove();
 }

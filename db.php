@@ -344,6 +344,24 @@
         }else{
             echo "0";
         }
+    //end of fetchInvoiceByYear
+    }else if(strstr($type, "fetchAllChildInfo")){
+        require "connect.php";
+        $target = $_REQUEST['t'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE student_BC=:target");     
+        $stmt->execute(["target"=>$target]);
+        $result = $stmt->fetch();
+        //var_dump($result["parent_icNum"]);
+        $stmt = $pdo->prepare("SELECT * FROM parent WHERE parent_icNum=:target");     
+        $stmt->execute(["target"=>$result["parent_icNum"]]);
+
+        $resultParent = $stmt->fetch();
+            if($result != null){
+                echo "1*".json_encode($result)."*".json_encode($resultParent);           
+            }else{
+                echo "0";
+            }
     }
     
 
