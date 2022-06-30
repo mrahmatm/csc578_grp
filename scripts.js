@@ -637,6 +637,7 @@ function alterInvoices(action){
                 if(this.responseText == 1){
                     //alert("Aduan Inserted!")
                     clearTable("invoiceTable");
+                    document.getElementById("chkSelectAll").checked = false;
                     globalSelectedInvoice.splice(0, globalSelectedInvoice.length);
                     fetchAllInvoice();
                 }else{
@@ -984,12 +985,15 @@ function selectAllChk(targetClass){
     var targets = document.getElementsByClassName(targetClass);
     var n = 0;
     var currentItem;
+    const e = new Event("change");
     while(n < targets.length){
         currentItem = targets[n];
         if(currentItem.checked == false)
             currentItem.checked = true;
         else
             currentItem.checked = false;
+
+        currentItem.dispatchEvent(e);
         n++;
     }
 }
