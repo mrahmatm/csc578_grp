@@ -20,6 +20,8 @@
     <br>
     <a href="manage invoices.php">go to manage invoices</a>
     <br>
+    <a href="manage student.php">go to manage student</a>
+    <br>
     <button id="btnLogout" onclick="logOut()">Log Out</button>
 </body>
 </html>
