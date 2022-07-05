@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 28, 2022 at 07:29 AM
+-- Generation Time: Jul 05, 2022 at 01:20 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -78,23 +78,18 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`invoice_id`, `student_BC`, `invoice_status`, `invoice_year`, `invoice_attach`) VALUES
-(18, 'ABC123', 'PENDING', 2024, NULL),
-(19, 'ABC456', 'APPROVED', 2024, NULL),
-(20, 'ABC789', 'PENDING', 2024, NULL),
-(21, 'DEF123', 'APPROVED', 2024, NULL),
-(23, 'DEF789', 'PENDING', 2024, NULL),
-(24, 'ABC123', 'APPROVED', 2026, NULL),
-(25, 'ABC456', 'PENDING', 2026, NULL),
-(26, 'ABC789', 'PENDING', 2026, NULL),
-(27, 'DEF123', 'APPROVED', 2026, NULL),
-(28, 'DEF456', 'APPROVED', 2026, NULL),
-(29, 'DEF789', 'APPROVED', 2026, NULL),
-(30, 'ABC123', 'APPROVED', 2022, NULL),
-(31, 'ABC456', 'APPROVED', 2022, NULL),
-(32, 'ABC789', 'APPROVED', 2022, NULL),
-(33, 'DEF123', 'APPROVED', 2022, NULL),
-(34, 'DEF456', 'APPROVED', 2022, NULL),
-(35, 'DEF789', 'APPROVED', 2022, NULL);
+(36, 'ABC123', 'PENDING', 2022, NULL),
+(37, 'ABC456', 'PENDING', 2022, NULL),
+(38, 'ABC789', 'PENDING', 2022, NULL),
+(39, 'DEF123', 'PENDING', 2022, NULL),
+(40, 'DEF456', 'PENDING', 2022, NULL),
+(41, 'DEF789', 'PENDING', 2022, NULL),
+(42, 'ABC123', 'PENDING', 2023, NULL),
+(43, 'ABC456', 'PENDING', 2023, NULL),
+(44, 'ABC789', 'PENDING', 2023, NULL),
+(45, 'DEF123', 'PENDING', 2023, NULL),
+(46, 'DEF456', 'PENDING', 2023, NULL),
+(47, 'DEF789', 'PENDING', 2023, NULL);
 
 -- --------------------------------------------------------
 
@@ -161,10 +156,10 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
 ('ABC123', 'eunha', '13579'),
 ('ABC456', 'umji', '33333'),
-('ABC789', 'sowon', NULL),
+('ABC789', 'sowon', '33333'),
 ('DEF123', 'sinb', NULL),
 ('DEF456', 'yuju', '33333'),
-('DEF789', 'yerin', NULL);
+('DEF789', 'yerin', '33333');
 
 --
 -- Indexes for dumped tables
@@ -216,7 +211,7 @@ ALTER TABLE `complaint`
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `invoice_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables

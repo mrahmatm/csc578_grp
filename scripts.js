@@ -998,3 +998,63 @@ function selectAllChk(targetClass){
     }
 }
 
+var globalReadStudent = Array();
+function loadExcelStudent(){
+
+        let upload = document.getElementById("inputFile").files[0];  // file from input
+        //alert(upload);
+        var formData = new FormData();
+        formData.append("targetExcel", upload);
+        //xhr.send(formData);
+
+        formData.append("targetExcel", upload);                                
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                //alert("code: " + code);
+                if(this.responseText !== 0){
+                    //alert(this.responseText);
+                    var targetDiv = document.getElementById("excel_output");
+
+                    if (!targetDiv.hasChildNodes()) {
+                        var result = JSON.parse(this.responseText);                  
+                        var createTable = document.createElement("table");
+                        createTable.setAttribute("id", "displayExcelTable");
+                        var header = createTable.insertRow();
+                        var createBCHeader = document.createElement("th");
+                        var createNameHeader = document.createElement("th");
+                        createBCHeader.innerHTML = "BC";
+                        createNameHeader.innerHTML = "Name";
+                        header.appendChild(createBCHeader);
+                        header.appendChild(createNameHeader);
+                        //alert(result.length);
+                        var n = 0, x = 1;
+                        while(n < result.length){
+                            var row1 = createTable.insertRow(x);
+                            var colBC = row1.insertCell(0);
+                            colBC.innerHTML = result[n].student_BC;
+                            var colName = row1.insertCell(1);
+                            colName.innerHTML = result[n].student_name;
+
+                            n++;
+                        }
+                        targetDiv.appendChild(createTable);
+                        createTable.classList.add("table");
+                        globalReadStudent = result;
+                    }else{
+                        targetDiv.removeChild(targetDiv.firstChild);
+                        globalReadStudent = [];
+                        loadExcelStudent();
+                    }
+                    
+                }else{
+                    alert("Error Reading Excel File!");
+                }
+            }                         
+        }   
+
+        xmlhttp.open("POST", "upload.php", true);
+        xmlhttp.send(formData);
+
+}
