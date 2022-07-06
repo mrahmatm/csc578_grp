@@ -959,6 +959,33 @@ function createModal(type, firstParam, secondParam, thirdParam){
         xmlhttp.send();
 
         createContent.appendChild(createTable);
+    }else if(type === "duplicateStudentInsert"){
+        var duplicates = firstParam;
+        var createText = document.createElement("p");
+        createText.innerHTML = "Students below is already within the database!";
+        var createTable = document.createElement("table");
+        var headerRow = createTable.insertRow(0);
+        var BCHeader = headerRow.insertCell(0);
+        BCHeader.innerHTML = "BC";
+        var nameHeader = headerRow.insertCell(1);
+        nameHeader.innerHTML = "Name";
+        var n = 1, x = 0;
+        while(x < duplicates.length){
+            var row1 = createTable.insertRow(n);
+            var colBC = row1.insertCell(0);
+            colBC.innerHTML = duplicates[x].student_BC;
+
+            var colName = row1.insertCell(1);
+            colName.innerHTML = duplicates[x].student_name;
+
+            n++; x++;
+        }
+
+        createContent.appendChild(createText);
+        createTable.classList.add("table");
+        createContent.appendChild(createTable);
+
+        
     }
 
     //show modal
@@ -1053,8 +1080,26 @@ function loadExcelStudent(){
                 }
             }                         
         }   
-
         xmlhttp.open("POST", "upload.php", true);
         xmlhttp.send(formData);
+}
 
+function insertStudent(){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var fullResult = this.responseText;
+            fullResult = fullResult.split("*");
+            var status = fullResult[0];
+
+            if(status == 1){
+                alert("Students added!");
+            }else{
+                var duplicates = JSON.parse(fullResult[1]);
+                createModal("duplicateStudentInsert", duplicates);
+            }
+        }                         
+    }   
+    xmlhttp.open("GET", "../db.php?type=insertStudent&data="+JSON.stringify(globalReadStudent), true);
+    xmlhttp.send();
 }

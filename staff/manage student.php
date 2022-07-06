@@ -31,6 +31,9 @@
 
             </div>
         </div>
+        <div>
+            <button class="button" onclick="insertStudent()">Add Students</button>
+        </div>
         </div>
     </body>
     </html>

@@ -362,6 +362,45 @@
             }else{
                 echo "0";
             }
+    //end of fetchAllChildInfo
+    }else if(strstr($type, "insertStudent")){
+        require "connect.php";
+        $data = $_REQUEST['data'];
+        $duplicateArray = (array) null;
+        $data = json_decode($data);
+        //echo gettype($data);
+
+        foreach($data as $student){
+            $currentBC =  $student->student_BC;
+            $stmt = $pdo->prepare("SELECT * FROM student WHERE student_BC=:currentBC");     
+            $stmt->execute(["currentBC"=>$currentBC]);
+            $result = $stmt->fetchAll();
+
+            if($result != null){
+                array_push($duplicateArray, $student);
+                //echo "<script>alert('Ada duplicate woi');</script>";
+            }
+                
+        }
+        $msg;
+        if(empty($duplicateArray)){
+            //echo "<script>alert('Yeay xde duplicate!');</script>";
+            foreach($data as $student){
+                $currentBC =  $student->student_BC;
+                $currentName = $student->student_name;
+                $stmt = $pdo->prepare("INSERT INTO student(student_BC, student_name) VALUES(?, ?)");
+        
+                if($stmt->execute([$currentBC, $currentName])){
+                    $msg =  "1";
+                }else{
+                    $msg =  "0";
+                }   
+            }
+
+            echo $msg;
+        }else{
+            echo "0*".json_encode($duplicateArray);
+        }
     }
     
 
