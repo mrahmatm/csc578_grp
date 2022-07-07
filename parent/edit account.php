@@ -45,7 +45,7 @@
 
     <div>
         <br><h6>edit anak</h6><br>
-        <table id="childrenTable">
+        <table id="childrenTable" class="table">
             <tr>
                 <th>Name</th><th>BC</th><th>Select</th>
             </tr>

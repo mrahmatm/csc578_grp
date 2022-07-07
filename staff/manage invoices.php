@@ -38,7 +38,7 @@
     </select><br>
     <label for="chkSelectAll">Select All </label><input type="checkbox" id="chkSelectAll" onchange="selectAllChk('chkSelectInvoice')">
     <div>
-        <table id="invoiceTable">
+        <table id="invoiceTable" class="table">
             <tr>
                 <th>ID</th><th>BC</th><th>Year</th><th>Status</th><th>Attachment</th><th>Select</th>
             </tr>

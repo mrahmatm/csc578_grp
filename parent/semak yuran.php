@@ -28,7 +28,7 @@
     <div>
         <h5>ni anak2 kau</h5><br>
         <div>
-            <table id="childrenTable">
+            <table id="childrenTable" class="table">
                 <tr>
                     <th>Name</th><th>BC</th>
                 </tr>
@@ -37,7 +37,7 @@
         </div>
         <div>
             <h5>list semua invoice anak2:</h5>
-            <table id="billTable">
+            <table id="billTable" class="table">
                 <tr>
                     <th>ID</th><th>Year</th><th>BC</th><th>Name</th><th>Status</th>
                 </tr>

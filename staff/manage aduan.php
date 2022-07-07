@@ -35,7 +35,7 @@
         <input type="number" step="5" min="10" value="10" id="displayLimiter">
         <label for="displayLimiter"> entries.</label>
         <div>
-            <table id="tableAduan">
+            <table id="tableAduan" class="table">
                 <th>ID</th><th>Title</th><th>Username</th><th>Description</th>
             </table>
         </div>     
