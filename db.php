@@ -401,6 +401,28 @@
         }else{
             echo "0*".json_encode($duplicateArray);
         }
+    //end of insertStudent
+    }else if(strstr($type, "fetchAllStudentManage")){
+        require "connect.php";
+        $target = $_REQUEST['t'];
+        $sort = $_REQUEST['s'];  
+
+        if(!strstr($target, "0"))
+            $condition = " WHERE student_BC LIKE '%".$target."%'";
+        else
+            $condition = "";
+
+        if(!strstr($sort, "-"))
+            $condition .= " ORDER BY ".$sort;
+
+        $stmt = $pdo->prepare("SELECT * FROM student".$condition);     
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if($result != null){
+            echo "1*".json_encode($result);
+        }else{
+            echo "0";
+        }
     }
     
 

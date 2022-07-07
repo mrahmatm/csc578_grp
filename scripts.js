@@ -983,9 +983,7 @@ function createModal(type, firstParam, secondParam, thirdParam){
 
         createContent.appendChild(createText);
         createTable.classList.add("table");
-        createContent.appendChild(createTable);
-
-        
+        createContent.appendChild(createTable);       
     }
 
     //show modal
@@ -1101,5 +1099,87 @@ function insertStudent(){
         }                         
     }   
     xmlhttp.open("GET", "../db.php?type=insertStudent&data="+JSON.stringify(globalReadStudent), true);
+    xmlhttp.send();
+}
+
+function toggleDivDisplay(self, target){
+    var selfDiv = document.getElementById(self);
+    var targetDiv = document.getElementById(target);
+
+    selfDiv.classList.add("hiddenDiv");
+    targetDiv.classList.remove("hiddenDiv");
+}
+
+var globalSelectedManageChildren = new Array();
+function fetchManageChildren(){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            clearTable('studentTable');
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*"); 
+            //alert(tempArray); 
+            var status = tempArray[0];
+            //note: dia jadi array
+            //alert();
+
+            if(status === "1"){
+                var results = JSON.parse(tempArray[1]);
+
+                var table = document.getElementById("studentTable");
+                var targetRow = table.rows.length;
+
+                var n = 0;
+                while(n < results.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colBC = newRow.insertCell(0);
+                    var colName = newRow.insertCell(1);
+                    var colParentIC = newRow.insertCell(2);
+                    var colAction = newRow.insertCell(3);
+
+                    var createLink = document.createElement("a");
+                    createLink.innerHTML = results[n].parent_icNum;
+                    createLink.value = results[n].student_BC;
+
+                    createLink.onclick = function() {createModal("childrenParent", this.value);};
+                    createLink.href = "javascript:;";
+                    colParentIC.appendChild(createLink);
+
+                    colBC.innerHTML = results[n].student_BC;
+                    colName.innerHTML = results[n].student_name;
+
+                    var newCheckBox = document.createElement('input');
+                    newCheckBox.type = 'checkbox';
+                    newCheckBox.classList.add("chkSelectChild");
+                    newCheckBox.id = 'chk' + results[n].student_BC;
+                    newCheckBox.value = results[n].student_BC;
+
+                    newCheckBox.addEventListener("change", function(){
+                        var currentParentIC = this.value;
+                        if(this.checked){
+                            globalSelectedManageChildren.push(currentParentIC);
+                        }else{
+                             //cari index of targetted children (row tu)
+                            var targetIndex = globalSelectedManageChildren.findIndex(object=>{
+                                return this.value;
+                            });
+                            globalSelectedManageChildren.splice(targetIndex, 1);
+                        }
+                    });
+
+                    colAction.appendChild(newCheckBox);
+                    n++; targetRow++;
+                }
+            }
+        }                         
+    }
+            
+        xmlhttp.open("GET", "../db.php?type=fetchAllStudentManage&t="+document.getElementById("inputSearch").value+
+        "&s="+document.getElementById("sortType").value, true);
+
+    //alert("paramter sent: " + input);
     xmlhttp.send();
 }
