@@ -32,7 +32,7 @@
                 <div><br>
                     <h4>search anak kau</h4><br>
                     <label for="searchBC">Enter Birth Cert Number: </label>
-                    <input type="text" id="searchBC" onkeyup="searchBC(this.value, 'null')"><br>
+                    <input type="text" id="searchBC" onkeyup="searchBC(this.value)"><br>
                     <h6>Search result:</h6>
                     <label for="displayName">Nama: </label>
                     <input type="text" disabled id="displayName">
@@ -42,7 +42,7 @@
                 </div><br>
         <div>
             <h4>list anak kau</h4><br>
-            <table id="childrenTable">
+            <table id="childrenTable" class="table">
                 <tr>
                     <th>Name</th><th>BC</th><th>Delete</th>
                 </tr>

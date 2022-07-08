@@ -74,6 +74,7 @@
                     <option value="student_name">Name</option>
                 </select><br>
                 <button onclick="fetchManageChildren()">Refresh</button><br>
+                <p>Delete Selected: </p><button onclick="terminateChildren()">Delete</button><br>
                 <div>
                     <table id="studentTable" class="table">
                         <tr>

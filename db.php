@@ -423,7 +423,26 @@
         }else{
             echo "0";
         }
+    //end of fetchAllStudentManage
+    }else if(strstr($type, "terminateChildren")){
+        require "connect.php";
+        $target = explode(",", $_REQUEST['t']);
+        //echo sizeof($target);
+        
+        $n = 0; $status = "0";
+        while($n < sizeof($target)){
+            $stmt = $pdo->prepare("DELETE FROM student WHERE student_BC =:target");     
+            
+            if($stmt->execute(["target"=>$target[$n]]))
+                $status = "1";
+            else
+                $status = "0";
+
+            $n++;
+        }
+    
+        echo $status;
+    //end of terminatechildren
     }
     
-
 ?>

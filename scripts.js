@@ -1183,3 +1183,26 @@ function fetchManageChildren(){
     //alert("paramter sent: " + input);
     xmlhttp.send();
 }
+
+function terminateChildren(){
+    if(globalSelectedManageChildren.length > 0){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var status = this.responseText;
+
+                if(status == 1){
+                    alert(globalSelectedManageChildren + " have been deleted from database");
+                    globalSelectedManageChildren = [];
+                    fetchManageChildren();
+                }else{
+                    alert("Erorr in deleting students");
+                }
+            }                         
+        }   
+        xmlhttp.open("GET", "../db.php?type=terminateChildren&t="+globalSelectedManageChildren, true);
+        xmlhttp.send();
+    }else{
+        alert("Please select student(s) first!");
+    }
+}
