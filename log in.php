@@ -14,7 +14,7 @@
 <body>
     <style>
         body{
-            background-image: url("web.jpg");
+            background-image: url("bla.png");
             background-color: #cccccc;
         }
         .container{
