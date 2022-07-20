@@ -1,14 +1,15 @@
+<?php
+
+include "common.php";
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Manage Students</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <?php
 
-            include "common.php";
-
-        ?>
         <script>
         window.onload = function(){
             fetchManageChildren();

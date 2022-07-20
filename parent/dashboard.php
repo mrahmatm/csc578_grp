@@ -1,3 +1,10 @@
+<?php
+        session_start();
+        include "common.php";
+        //remarks: kena include hok one folder up sbb benda alah ni dalam folder
+        $currentUser = $_SESSION["currentUser"];
+        //echo "<script>alert('current session: ' + ".$currentUser.")</script>";
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <?php
-        session_start();
-        include "common.php";
-        //remarks: kena include hok one folder up sbb benda alah ni dalam folder
-        $currentUser = $_SESSION["currentUser"];
-        //echo "<script>alert('current session: ' + ".$currentUser.")</script>";
-    ?>
+
     <style>
         h1 {text-align: center;
             margin-top: 50px;

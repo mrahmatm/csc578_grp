@@ -983,7 +983,11 @@ function createModal(type, firstParam, secondParam, thirdParam){
 
         createContent.appendChild(createText);
         createTable.classList.add("table");
-        createContent.appendChild(createTable);       
+        createContent.appendChild(createTable);   
+
+    }else if(type === "normalAlert"){
+        var title = firstParam;
+        var content = secondParam;
     }
 
     //show modal

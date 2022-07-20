@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 05, 2022 at 01:20 PM
+-- Generation Time: Jul 16, 2022 at 02:11 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -154,12 +154,18 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_BC`, `student_name`, `parent_icNum`) VALUES
-('ABC123', 'eunha', '13579'),
-('ABC456', 'umji', '33333'),
-('ABC789', 'sowon', '33333'),
-('DEF123', 'sinb', NULL),
-('DEF456', 'yuju', '33333'),
-('DEF789', 'yerin', '33333');
+('QWE123', 'TAEYON', NULL),
+('QWE456', 'CHOA', NULL),
+('QWE789', 'JIMIN', NULL),
+('RTY123', 'HYOLYN', NULL),
+('RTY456', 'SEOLHYUN', NULL),
+('RTY789', 'MINA', NULL),
+('VBN123', 'CHANYEOL', NULL),
+('VBN456', 'CHEN', NULL),
+('VBN789', 'HEECHUL', NULL),
+('ZXC123', 'TAEYANG', NULL),
+('ZXC456', 'GD', NULL),
+('ZXC789', 'KEY', NULL);
 
 --
 -- Indexes for dumped tables
