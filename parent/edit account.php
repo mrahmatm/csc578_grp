@@ -25,6 +25,19 @@
         window.onload = fetchChildren('addChk');
         window.onload = fetchCurrentUserInfo();
     </script>
+
+    <style>
+  
+        tr{
+            border: 2px solid;
+            text-align: center;
+        }
+        th{
+            background-color: #04AA6D;
+            border: 2px solid;
+        }
+        
+    </style>
 </head>
 <body>
     <h5>update account page</h5>
@@ -42,7 +55,7 @@
         <input type="text" id="inputPhone" disabled class="inputClass">
         <label for="inputPassword">Password: </label>
         <input type="password" disabled class="inputClass" id="inputPassword"><br><br>
-        <button id="btnUpdateAccount" onclick="updateUserAccount()" disabled class="inputClass"">Save Changes</button>
+        <button id="btnUpdateAccount" onclick="updateUserAccount()" disabled class="inputClass" >Save Changes</button>
     </div>
 
     <div>
@@ -52,17 +65,17 @@
                 <th>Name</th><th>BC</th><th>Select</th>
             </tr>
         </table><br>
-        <button id="btnDelete" onclick="removeChildren()">Delete</button>
+        <button id="btnDelete" onclick="removeChildren()" >Delete</button>
     </div>
     <div><br>
                     <h4>search anak kau</h4><br>
-                    <label for="searchBC">Enter Birth Cert Number: </label>
-                    <input type="text" id="searchBC" onkeyup="searchBC(this.value, 'tak null')"><br>
+                    <label for="searchBC">Enter Birth Cert Number: </label><br>
+                    <input type="text" id="searchBC" onkeyup="searchBC(this.value, 'tak null')"><br><br>
                     <h6>Search result:</h6>
                     <label for="displayName">Nama: </label>
                     <input type="text" disabled id="displayName">
                     <label for="displayBC">BC: </label>
-                    <input type="text" disabled id="displayBC"><br>
+                    <input type="text" disabled id="displayBC"><br><br>
                     <button id="addChild" onclick="registerChild()" disabled>Add</button>
     </div><br>
 </body>

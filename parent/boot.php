@@ -96,6 +96,57 @@ li:nth-child(4) a:after {
 a:hover:after {
   transform: rotateX(0deg) translateZ(0px);
 }
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  color: #f4a460;
+  background-color: #8b4513;
+  border: 2px solid #7a7a52;
+  border-radius: 20px;
+  box-shadow: 0 5px #b8b894;
+}
+
+
+.button:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+
+.button:active {
+  background-color: #088A08;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    
 </style>
 </head>
 <body>

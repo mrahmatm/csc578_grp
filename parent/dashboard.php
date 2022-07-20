@@ -100,12 +100,12 @@
             <a href="semak yuran.php"><button class="button"><span><b>Semakan Yuran</b></span></button></a>
             <br><br>
             <a href="edit account.php"><button class="button"><span><b>Edit Account</b></span></button></a>
-            <br><br>
-            
+            <br><br><br><br><br>
+            <button id="btnLogout" onclick="logOut()" class="button"><b>Log Out</b></button>
             <br>
         </div>
     <div>
-        <button id="btnLogout" onclick="logOut()" class="button">Log Out</button>
+        
     </div>
 </body>
 </html>
