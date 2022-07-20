@@ -68,7 +68,7 @@ function verifyLogIn(){
 
     if(inputUsername.length == 0 || inputPassword.length == 0){
         //letak if input area null
-        alert("this cannot be null!");
+        createModal("simpleAlert", "Error!", "Please fill in all fields!");
         return;
 
     }else if(inputUsername.includes("@") && inputUsername.includes(".")){
@@ -80,13 +80,13 @@ function verifyLogIn(){
                 //alert("code: " + code);
                 
                 if(this.responseText === "1parent"){
-                    alert("account found!");
+                    //alert("account found!");
                     window.location.href = "parent/dashboard.php";
                 }else if(this.responseText === "1staff"){
-                    alert("account found!");
+                    //alert("account found!");
                     window.location.href = "staff/dashboard.php";
                 }else
-                    alert("ha?");
+                createModal("simpleAlert", "Account Not Found!", "Please check your email and password.");
                 
             }
                 
@@ -114,7 +114,7 @@ function verifyLogIn(){
         var target = document.getElementById("feedbackDiv1");
                     target.innerHTML = "Not a valid email adrress!";
                     target.className = "errorText"; */
-                    alert("tulis email elok2 la");
+                    createModal("simpleAlert", "Error!", "Please check the email address entered.");
     }
     
 }
@@ -172,7 +172,7 @@ function addChild(){
 
     //check kalau dia add same student
     if(globalChildren.findIndex(object=>{ return object.student_BC === globalBC;}) != -1){
-        alert("kan dah add tu kau nak apa lagi?");
+        createModal("simpleAlert", "Error!", "Cannot register duplicate children!");
         return;
     }
 
@@ -246,7 +246,7 @@ function deleteChild(input){
 }
 
 function submitSignUp(){
-    alert("sabar ni x siap lg (otp)");
+    //alert("sabar ni x siap lg (otp)");
     //submit array of children
     //submit each field of input
     var name = document.getElementById("inputName").value;
@@ -256,12 +256,12 @@ function submitSignUp(){
     var IC = document.getElementById("inputIC").value;
 
     if(!email.includes("@") && !email.includes(".")){
-        alert("invalid email address!");
+        createModal("simpleAlert", "Invalid!", "Please check the email address entered.");
         return;
     }
 
     if(phone.length < 9){
-        alert("invalid phone number lenght!");
+        createModal("simpleAlert", "Invalid!", "Please check the phone number entered.");
         return;
     }
 
@@ -271,7 +271,7 @@ function submitSignUp(){
             if(this.readyState == 4 && this.status == 200){
                 //alert("code: " + code);
                 if(this.responseText == 1){
-                    alert("Account Created! Please proceed to log in.")
+                    createModal("simpleAlert", "Success!", "Account created! You may now log in.");
                 }
             }                         
         }
@@ -293,7 +293,7 @@ function submitAduan(){
     var details = document.getElementById("inputDetails");
 
     if(title.value.length == 0 || details.value.length == 0){
-        alert("isi elok2 la");
+        createModal("simpleAlert", "Invalid!", "Please enter all fields.");
         return;
     }
         //alert("input isnt null!");
@@ -303,7 +303,7 @@ function submitAduan(){
             if(this.readyState == 4 && this.status == 200){
                 //alert("code: " + code);
                 if(this.responseText == 1){
-                    alert("Aduan Inserted!")
+                    createModal("simpleAlert", "Success!", "Report have been recorded.");
                 }
             }                         
         }
@@ -311,7 +311,7 @@ function submitAduan(){
         //document.write("meow");
     
     //alert("sampai dekat sini!");
-        alert(globalCurrentUser);
+        //alert(globalCurrentUser);
         xmlhttp.open("GET", "../db.php?t=" + title.value + "&d=" + details.value + "&u=" + globalCurrentUser + "&type=insertAduan", true);
 
         //alert("paramter sent: " + input);
@@ -326,8 +326,11 @@ function logOut(){
             if(this.readyState == 4 && this.status == 200){
                 //alert("code: " + code);
                 if(this.responseText == 1){
-                    alert("Logged Out!")
-                    window.location.href = "../log in.php";
+                    createModal("simpleAlert", "Logged Out", "You have successfully logged out!");
+                    setTimeout(function(){
+                        window.location.href = "../log in.php";
+                    },4000);
+                    
                 }
             }                         
         }
@@ -653,7 +656,7 @@ function alterInvoices(action){
         //alert("paramter sent: " + input);
         xmlhttp.send();
     }else{
-        alert("Select invoice(s) first!");
+        createModal("simpleAlert", "Error!", "Please select invoice(s) first.");
     }
         
 }
@@ -685,7 +688,7 @@ function generateInvoices(){
         //alert("paramter sent: " + input);
         xmlhttp.send();
     }else{
-        alert("Year cannot be empty!");
+        createModal("simpleAlert", "Invalid!", "Please enter a valid year.");
     }
 }
 
@@ -867,6 +870,9 @@ function createModal(type, firstParam, secondParam, thirdParam){
     create.setAttribute("id", "currentModal");
     create.classList.add("modal")
 
+    const createHeader = document.createElement("div");
+    createHeader.classList.add("modal-header");
+
     const createContent = document.createElement("div");
     createContent.classList.add("modal-content");
 
@@ -875,8 +881,10 @@ function createModal(type, firstParam, secondParam, thirdParam){
     createSpan.innerHTML = "&times";
 
     document.body.appendChild(create);
+    
     create.appendChild(createContent);
     createContent.appendChild(createSpan);
+    createContent.appendChild(createHeader);
 
     //buat content modal dekat sini pastu appendChild dekat createContent
     if(type === "childrenParent"){
@@ -985,9 +993,17 @@ function createModal(type, firstParam, secondParam, thirdParam){
         createTable.classList.add("table");
         createContent.appendChild(createTable);   
 
-    }else if(type === "normalAlert"){
+    }else if(type === "simpleAlert"){
         var title = firstParam;
         var content = secondParam;
+
+        var createText = document.createElement("h5");
+        createText.innerHTML = title;
+        createHeader.appendChild(createText);
+
+        var createText = document.createElement("p");
+        createText.innerHTML = content;
+        createContent.appendChild(createText);
     }
 
     //show modal
@@ -1078,7 +1094,7 @@ function loadExcelStudent(){
                     }
                     
                 }else{
-                    alert("Error Reading Excel File!");
+                    createModal("simpleAlert", "Error!", "Please use the template given.");
                 }
             }                         
         }   
@@ -1095,7 +1111,7 @@ function insertStudent(){
             var status = fullResult[0];
 
             if(status == 1){
-                alert("Students added!");
+                createModal("simpleAlert", "Success!", "Student inserted successfully.");
             }else{
                 var duplicates = JSON.parse(fullResult[1]);
                 createModal("duplicateStudentInsert", duplicates);
@@ -1196,17 +1212,18 @@ function terminateChildren(){
                 var status = this.responseText;
 
                 if(status == 1){
-                    alert(globalSelectedManageChildren + " have been deleted from database");
+                    //alert(globalSelectedManageChildren + " have been deleted from database");
+                    createModal("simpleAlert", "Deleted!", globalSelectedManageChildren+"have been deleted from the database.");
                     globalSelectedManageChildren = [];
                     fetchManageChildren();
                 }else{
-                    alert("Erorr in deleting students");
+                    createModal("simpleAlert", "Error!", "Error deleted children.");
                 }
             }                         
         }   
         xmlhttp.open("GET", "../db.php?type=terminateChildren&t="+globalSelectedManageChildren, true);
         xmlhttp.send();
     }else{
-        alert("Please select student(s) first!");
+        createModal("simpleAlert", "Error!", "Please select student first!");
     }
 }
