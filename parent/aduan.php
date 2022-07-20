@@ -10,6 +10,7 @@ echo "
     //alert('current session: ' + globalCurrentUser);
 </script>";
 include "common.php";
+include "boot.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +21,28 @@ include "common.php";
     <title>Document</title>
 
     
+    <style>
+        h1 {text-align: center;
+            margin-top: 50px;
+            font-family: Marker Felt, fantasy;
+            font-size: 50px;
+    }
+    .container{
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
-    <h1>page aduan</h1>
+    <h1>Page Aduan</h1>
     <div>
-        <div>
-            <label for="inputTitle">Tajuk aduan: </label>
+        <div class= "container">
+            <label for="inputTitle">Tajuk aduan: </label><br>
             <input type="text" id="inputTitle"><br>
             <div>
-                <label for="inputDetails">Details: </label>
+                <br><label for="inputDetails">Details: </label><br>
                 <textarea id="inputDetails" cols="30" rows="10" style="vertical-align: middle;"></textarea>
             </div>
-            <button id="btnSubmit" onclick="submitAduan()">Hantar</button>
+            <br><button id="btnSubmit" onclick="submitAduan()">Hantar</button>
         </div>
     </div>
 </body>

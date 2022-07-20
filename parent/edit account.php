@@ -9,6 +9,7 @@
             //alert('current session: ' + globalCurrentUser);
         </script>";
         include "common.php";
+        include "boot.php";
     ?>
 <!DOCTYPE html>
 <html lang="en">

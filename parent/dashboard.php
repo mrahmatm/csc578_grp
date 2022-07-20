@@ -15,33 +15,76 @@
 
 
     <style>
-        h1 {text-align: center;
+    body{
+            background-image: url("dashboard.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+            
+        }
+        
+    h1 {text-align: center;
             margin-top: 50px;
-            font-family: 'Courier New', monospace;
+            font-family: Marker Felt, fantasy;
             font-size: 50px;
-        }
-        .container{
-        width: 100%;
-        float: left;
-        text-align: center;
-        }
-        .container button{
-        display: inline-block;
-        }       
-        a.butang:link{
-            color: #fb3f00;
-            text-decoration: none;
-        }
-        a.butang:visited
-        {
-        color: black;
-        text-decoration: none;
-        }
-        a.butang:hover
-        {
-        color: #fb3f00;
-        text-decoration: none;
-        }
+    }
+    .container{
+            margin-left:100px;
+            text-align: center;
+            font-size: 18px;
+    }
+    .button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  color: #f4a460;
+  background-color: #8b4513;
+  border: 2px solid #7a7a52;
+  border-radius: 20px;
+  box-shadow: 0 5px #b8b894;
+}
+
+
+.button:hover {
+  background-color: #a9a9a9;
+  color: black;
+}
+
+.button:active {
+  background-color: #088A08;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    
+</style>
 
 
     </style>
@@ -50,20 +93,19 @@
     <div>
     <h1>Parent's Dashboard</h1>
     </div>
-        <div class="container" class="box">
-            <button>
-            <a href="aduan.php" class="butang" id="btn1">Aduan</a><br>
-            </button>
-            <button>
-            <a href="semak yuran.php" class="butang">Semakan Yuran</a><br>
-            </button>
-            <button>
-            <a href="edit account.php" class="butang" id="btn3">Edit Account</a>
-            </button>
+    <div class="container" class="box">
+        <br><br><br>
+            <a href="aduan.php"><button class="button"><span><b>Aduan</b></span></button></a>
+            <br><br>
+            <a href="semak yuran.php"><button class="button"><span><b>Semakan Yuran</b></span></button></a>
+            <br><br>
+            <a href="edit account.php"><button class="button"><span><b>Edit Account</b></span></button></a>
+            <br><br>
+            
             <br>
         </div>
     <div>
-        <button id="btnLogout" onclick="logOut()">Log Out</button>
+        <button id="btnLogout" onclick="logOut()" class="button">Log Out</button>
     </div>
 </body>
 </html>

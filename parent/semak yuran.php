@@ -2,6 +2,7 @@
 
 session_start();
 include "common.php";
+include "boot.php";
 //remarks: kena include hok one folder up sbb benda alah ni dalam folder
 $currentUser = $_SESSION["currentUser"];
 echo "
