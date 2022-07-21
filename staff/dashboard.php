@@ -65,7 +65,7 @@ h1 {text-align: center;
 }
 
 .button:active {
-  background-color: #088A08;
+  background-color: #f5deb3;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -99,15 +99,16 @@ h1 {text-align: center;
 </style>
 </head>
 <body>
+  
 </div>
         <div class="container" >
     <h1>staffs's dashboard</h1>
     <br><br><br>
-    <a href="manage aduan.php"><button class="button"><span><b>MANAGE ADUAN</b></span></button></a>
+    <a href="manage aduan.php"><button class="button"><span><b>PENGURUSAN ADUAN</b></span></button></a>
     <br><br>
-    <a href="manage invoices.php"><button class="button"><span><b>MANAGE INVOICES</b></span></button></a>
+    <a href="manage invoices.php"><button class="button"><span><b>PENGURUSAN INVOICES</b></span></button></a>
     <br><br>
-    <a href="manage student.php"><button class="button"><span><b>MANAGE STUDENT</b></span></button></a>
+    <a href="manage student.php"><button class="button"><span><b>PENGURUSAN PELAJAR</b></span></button></a>
     <br><br>
 </div>
 <button id="btnLogout" onclick="logOut()">Log Out</button>

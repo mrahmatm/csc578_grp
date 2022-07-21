@@ -6,7 +6,7 @@ include "common.php";
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Manage Students</title>
+        <title>PENGURUSAN PELAJAR</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 
@@ -17,8 +17,14 @@ include "common.php";
     </script>
     </head>
     <style>
+        body{
+            background-image:url("dark.png"); 
+            background-size: cover;
+           
+            
+        }
         #addStudentDiv{
-            background-color: coral;
+            background-color: grey;
         }
         .buttonToggle{
             margin: 10px 10px;
@@ -26,6 +32,8 @@ include "common.php";
         .hiddenDiv{
             display: none;
         }
+
+        
     </style>
     <body>
         <div class="container">
@@ -45,7 +53,7 @@ include "common.php";
                 <span id="message"></span>
                     <table class="table">
                         <tr>
-                        <td width="25%" align="right">Select Excel File</td>
+                        <td width="25%" text_align="right">Select Excel File</td>
                         <td width="50%"><input type="file" name="select_excel" id="inputFile"/></td>
                         <td width="25%"><button onclick="loadExcelStudent()"  name="load" class="btn btn-primary">Submit</button></td>
                         </tr>
@@ -62,9 +70,8 @@ include "common.php";
                 </div>
             </div>
             
-            <div class="container hiddenDiv" style="background-color: rgb(144,238,144);" id="manageStudentDiv">
-            <h2>part ni tak siap lagi</h2>
-                <h3 align="center">Manage Student</h3><br>
+            <div class="container hiddenDiv" style="background-color:#8b4513" id="manageStudentDiv">
+                <h3 align="center">PENGURUSAN PELAJAR</h3><br>
                 <label for="inputSearch">Search:</label>
                 <input type="text" id="inputSearch" onkeyup="fetchManageChildren()" autofocus>
                 <label for="inputSearch"> (by student BC)</label><br>
