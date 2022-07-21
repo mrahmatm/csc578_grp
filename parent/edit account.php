@@ -27,7 +27,17 @@
     </script>
 
     <style>
-  
+        h1 {text-align: center;
+            margin-top: 50px;
+            font-family: Marker Felt, fantasy;
+            font-size: 50px;
+    }
+    h4 {text-align: center;
+            margin-top: 50px;
+            font-family: Marker Felt, fantasy;
+           
+    }
+    
         tr{
             border: 2px solid;
             text-align: center;
@@ -36,15 +46,34 @@
             background-color: #04AA6D;
             border: 2px solid;
         }
+
+        .container{
+            text-align:center;
+        }
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+        }
+ 
+        
         
     </style>
 </head>
-<body>
-    <h5>update account page</h5>
-    <div>
-        <br><h6>edit kau</h6><br>
-        <input type="checkbox" id="toggleEdit" onchange="toggleEditMode('inputClass', 'toggleEdit')">
-        <label for="toggleEdit">Edit Credentials</label><br>
+<body><div class="header">
+    <h1>Update Account</h1>
+    <a href="dashboard.php" class="cta">
+    <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
+    <span>Back</span>
+    <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    
+  </svg>
+</a>
+    </div>
+    <div class="container">
+        <br><h4>Your Details</h4><br>
+        <input type="checkbox" id="toggleEdit" class="checkbox-spin" classonchange="toggleEditMode('inputClass', 'toggleEdit')">
+        <label for="toggleEdit">Edit Credentials</label><br><br>
         <label for="inputName">Name: </label>
         <input type="text" id="inputName" disabled class="inputClass">
         <label for="inputIC">IC: </label>
@@ -59,24 +88,27 @@
     </div>
 
     <div>
-        <br><h6>edit anak</h6><br>
+        <br><h4>Manage your Children</h4><br>
         <table id="childrenTable" class="table">
             <tr>
                 <th>Name</th><th>BC</th><th>Select</th>
             </tr>
-        </table><br>
+        </table><div class="container">
         <button id="btnDelete" onclick="removeChildren()" >Delete</button>
+        </div>
     </div>
-    <div><br>
-                    <h4>search anak kau</h4><br>
+    <div>
+            <div class="container">
+                    <h4>Search your Children</h4><br>
                     <label for="searchBC">Enter Birth Cert Number: </label><br>
                     <input type="text" id="searchBC" onkeyup="searchBC(this.value, 'tak null')"><br><br>
-                    <h6>Search result:</h6>
+                    <h4>Search result:</h4>
                     <label for="displayName">Nama: </label>
                     <input type="text" disabled id="displayName">
                     <label for="displayBC">BC: </label>
                     <input type="text" disabled id="displayBC"><br><br>
                     <button id="addChild" onclick="registerChild()" disabled>Add</button>
+                    </div>
     </div><br>
 </body>
 </html>

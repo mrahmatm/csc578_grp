@@ -26,6 +26,12 @@ echo "
     </script>
 
     <style>
+    
+    h1 {text-align: center;
+            margin-top: 50px;
+            font-family: Marker Felt, fantasy;
+            font-size: 50px;
+    }
         table,  {
             border: 1px solid;
             
@@ -42,24 +48,42 @@ echo "
             text-align: center;
             
         }
+        button{
+            height:50px;    
+        }
+        h5{
+            padding:10px;
+        }
+        p{
+            margin-left:10px;
+        }
  
 
     </style>
 </head>
-<body>
-    <h1>semak yuran baq hang</h1><br>
+<body><div class="header">
+    <h1>Semakan Yuran</h1><br>
+    <a href="dashboard.php" class="cta">
+    <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
+    <span>Back</span>
+    <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    
+  </svg>
+</a>
+</div><br>
     <div>
-        <h5>ni anak2 kau</h5><br>
+        <h5>Your Child</h5><br>
         <div>
             <table id="childrenTable" class="table"     >
                 <tr>
                     <th>Name</th><th>BC</th>
                 </tr>
             </table><br>
-            <p>bukan anak kau? ha pegi sini <br><button class="button"><a href="edit account.php">Update</a></p></button>
+            <p>Not your Children? Update here! <button class="button" ><a href="edit account.php"><span>Update</span></a></p></button>
         </div>
         <div>
-            <h5>list semua invoice anak2:</h5>
+            <h5>Your Children Invoice</h5>
             <table id="billTable" class="table">
                 <tr>
                     <th >ID</th><th>Year</th><th>BC</th><th>Name</th><th>Status</th>
@@ -67,7 +91,7 @@ echo "
             </table><br>
         </div>
         <div>
-            <h5>list tahun2</h5>
+            <h5>List of Year</h5>
             <table id="billYearTable" class="table">
                 <tr>
                     <th>Year</th><th>Action</th>
