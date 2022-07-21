@@ -15,10 +15,11 @@
 <body>
     <style>
         body{
-            background-image: url("bla.png");
-            background-color: #cccccc;
+            background-image: url("lol.png");
+            background-size: cover;
         }
         .container{
+            background-color: grey;
             margin-left:100px;
             text-align: center;
             font-size: 18px;
