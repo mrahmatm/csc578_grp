@@ -19,8 +19,11 @@
             background-size: cover;
         }
         .container{
-            background-color: grey;
-            margin-left:100px;
+
+            width: 50%;
+            padding: 20px;
+            border: 5px solid gray;
+            margin: 20px;
             text-align: center;
             font-size: 18px;
 
@@ -44,9 +47,9 @@
  
     </style>
     <div>
+    <div class="container">
         <h1>SKSA</h1>
-        <img src="logo.png" alt="Logo Sekolah" width="150" height="150"  >
-            <div class="container">
+        <img src="logo.png" alt="Logo Sekolah" width="150" height="150"  ><br><br>
                 <label for="inputUsername">Username: </label>
                 <input type="text" id="inputUsername"><br> <br>
                 <label for="inputPassword">Password: </label>
