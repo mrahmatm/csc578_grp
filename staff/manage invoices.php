@@ -38,10 +38,15 @@ echo "
 </head>
 <body>
 <div class="header">
-    <h1>PENGURUSAN INVOICE</h1><br>
+<h1>PENGURUSAN INVOICE</h1>
+    <a href="dashboard.php" class="cta">
+    <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
+    <span>Back</span>
+    <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    </svg>
+</a>
 </div>
-<a href="dashboard.php"><i class="fa fa-arrow-left fa-2xl" ></i></a>
-<br>
 <br>
 <table>
     <th><label for="inputSearch">Search:</label>

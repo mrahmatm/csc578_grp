@@ -38,7 +38,7 @@ echo "
             
         }
 
-h1 {text-align: left;
+h1 {text-align: right;
             margin-top: 20px;
             font-family: Impact, fantasy;
             font: size 42px;
@@ -49,11 +49,14 @@ h1 {text-align: left;
 </head>
 <body>
 <div class="header">
-    <table>
-<th><a href="dashboard.php"><i class="fa fa-arrow-left fa-2xl" ></i></a></th>
-<th><h1>SENARAI ADUAN</h1></th>
-    </table>
-  
+<h1>SENARAI ADUAN</h1>
+    <a href="dashboard.php" class="cta">
+    <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
+    <span>Back</span>
+    <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    </svg>
+</a>
 </div>
     <div>
         <br>

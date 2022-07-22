@@ -15,24 +15,21 @@
 <body>
     <style>
         body{
-            background-image: url("lol.png");
+            background-image: url("lil.png");
             background-size: cover;
+            color:black;
         }
         .container{
-
-            width: 50%;
-            padding: 20px;
-            border: 5px solid gray;
-            margin: 20px;
             text-align: center;
-            font-size: 18px;
+
 
             
         }
-        h1 {text-align: center;
-            margin-top: 40px;
-            font-family: 'Courier New', monospace;
-            font-size: 100px;
+        h2 {text-align: center;
+            margin-top: 10px;
+            font-family: 'Snell Roundhand, cursive';
+            font-size: 50px;
+            color:black;
         }
         img{
             display: block;
@@ -44,12 +41,31 @@
             margin-top: 10px;
 
         }
+        .button {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        text-align: center;
+        outline: none;
+        color: black;
+        background-color: grey;
+        border: 2px solid #7a7a52;
+        border-radius: 20px;
+        box-shadow: 0 5px #b8b894;
+        }
+
+        .button:active {
+        background-color: #f5deb3;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
  
     </style>
-    <div>
     <div class="container">
-        <h1>SKSA</h1>
-        <img src="logo.png" alt="Logo Sekolah" width="150" height="150"  ><br><br>
+    <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
+    <h2>e-pibg</h2>
+    <p>Sekolah Kebangsaan Seri Ampang</p>
                 <label for="inputUsername">Username: </label>
                 <input type="text" id="inputUsername"><br> <br>
                 <label for="inputPassword">Password: </label>
@@ -61,7 +77,7 @@
                     <label for="radParent">Parent</label>
                 </div>
                 <br>
-                <button id="btnLogin" onclick="verifyLogIn()">Submit</button>
+                <button id="btnLogin" onclick="verifyLogIn()" class="button">Submit</button>
             </div>
     </div>
 </body>
