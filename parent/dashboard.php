@@ -95,13 +95,13 @@
     </div>
     <div class="container" class="box">
         <br><br><br>
-            <a href="aduan.php"><button class="button"><span><b>Aduan</b></span></button></a>
+            <a href="aduan.php"><button class="button"><span><b> Semakan Aduan</b></span></button></a>
             <br><br>
             <a href="semak yuran.php"><button class="button"><span><b>Semakan Yuran</b></span></button></a>
             <br><br>
             <a href="edit account.php"><button class="button"><span><b>Edit Account</b></span></button></a>
             <br><br><br><br><br>
-            <button id="btnLogout" onclick="logOut()" class="button"><b>Log Out</b></button>
+            <button id="btnLogout" onclick="logOut()" class="button"><span><b>Log Out</b></span></button>
             <br>
         </div>
     <div>
