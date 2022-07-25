@@ -76,24 +76,14 @@ echo "
         <h5 >TIDAKAN KE ATAS PILIHAN</h5>
         <table class="table2">
             <th>
-<<<<<<< Updated upstream
-        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i>Delete Invoice</button>
+        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i>Hapuskan invois </button>
         </th>
-        <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i>Approved</button>
-=======
-        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i> HAPUS</button>
-        </th>
-        <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i> PENGESAHAN</button>
->>>>>>> Stashed changes
+        <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i>Disahkan</button>
         </th>
         <th><button onclick="alterInvoices('rejected')" class="btn"><i class="fa fa-ban fa-fw"></i>DI TOLAK</button>
         </th>
-<<<<<<< Updated upstream
-        <th><button onclick="alterInvoices('pending')"  class="btn"><i class="fa fa-clock-o fa-fw"></i>Pending</button>
-        <th><button onclick="alterInvoices('deleteAttach')" class="btn">Delete Attachment</button></th>
-=======
+        <th><button onclick="alterInvoices('deleteAttach')" class="btn">Hapus lampiran</button></th>
         <th><button onclick="alterInvoices('pending')"  class="btn"><i class="fa fa-clock-o fa-fw"></i>MENUNGGU</button>
->>>>>>> Stashed changes
 </table>
     </div>
     <br><div class="box">
