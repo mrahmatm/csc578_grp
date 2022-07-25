@@ -91,7 +91,7 @@
 </head>
 <body>
     <div>
-    <h1>Parent's Dashboard</h1>
+    <h1> e-PIBG</h1>
     </div>
     <div class="container" class="box">
         <br><br><br>
@@ -99,9 +99,9 @@
             <br><br>
             <a href="semak yuran.php"><button class="button"><span><b>Semakan Yuran</b></span></button></a>
             <br><br>
-            <a href="edit account.php"><button class="button"><span><b>Edit Account</b></span></button></a>
+            <a href="edit account.php"><button class="button"><span><b>Kemaskini Akaun</b></span></button></a>
             <br><br><br><br><br>
-            <button id="btnLogout" onclick="logOut()" class="button"><span><b>Log Out</b></span></button>
+            <button id="btnLogout" onclick="logOut()" class="button"><span><b>Log Keluar</b></span></button>
             <br>
         </div>
     <div>

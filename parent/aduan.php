@@ -43,10 +43,10 @@ include "boot.php";
     <div class="header">
      
 
-    <h1>Page Aduan</h1> 
+    <h1>Semakan Aduan</h1> 
     <a href="dashboard.php" class="cta">
     <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
-    <span>Back</span>
+    <span>Kembali</span>
     <svg width="13px" height="10px" viewBox="0 0 13 10">
     <path d="M1,5 L11,5"></path>
     

@@ -65,7 +65,7 @@ echo "
     <h1>Semakan Yuran</h1><br>
     <a href="dashboard.php" class="cta">
     <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
-    <span>Back</span>
+    <span>Kembali</span>
     <svg width="13px" height="10px" viewBox="0 0 13 10">
     <path d="M1,5 L11,5"></path>
     
@@ -73,33 +73,33 @@ echo "
 </a>
 </div><br>
     <div>
-        <h5>Your Child</h5><br>
+        <h5>Anak Anda</h5><br>
         <div>
             <table id="childrenTable" class="table"     >
                 <tr>
-                    <th>Name</th><th>BC</th>
+                    <th>Nama</th><th>Sijil Kelahiran</th>
                 </tr>
             </table><br>
-            <p>Not your Children? Update here! <button class="button" ><a href="edit account.php"><span>Update</span></a></p></button>
+            <p>Bukan anak anda? Kemaskini sekarang! <button class="button" ><a href="edit account.php"><span>Kemaskini</span></a></p></button>
         </div>
         <div>
-            <h5>Your Children Invoice</h5>
+            <h5>Invois Anak Anda</h5>
             <table id="billTable" class="table">
                 <tr>
-                    <th >ID</th><th>Year</th><th>BC</th><th>Name</th><th>Status</th>
+                    <th >ID</th><th>Tahun</th><th>Sijil Kelahiran</th><th>Nama</th><th>Status</th>
                 </tr>
             </table><br>
         </div>
         <div>
-            <h5>List of Pending Payment</h5>
+            <h5>Senarai Menunggu</h5>
             <!--<form action="uploadFile.php" enctype="multipart/form-data" method="POST" id="postFile"> -->
                 <table id="billYearTable" class="table">
                     <tr>
-                        <th>Year</th><th>Action</th>
+                        <th>Tahun</th><th>Tindakan</th>
                     </tr>
                 </table>
             <!--</form> -->     
-            <button class="button">Submit</button>
+            <button class="button">Hantar</button>
         </div>
     </div>
 </body>
