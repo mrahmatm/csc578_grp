@@ -477,6 +477,7 @@ function fetchChildren(actions){
     xmlhttp.send();
 }
 
+
 function fetchInvoice(){
     var xmlhttp = new XMLHttpRequest();
     globalSelectedInvoice = [];
@@ -512,16 +513,19 @@ function fetchInvoice(){
                     var colBC = newRow.insertCell(2);
                     var colName = newRow.insertCell(3);
                     var colStatus = newRow.insertCell(4);
-                    var colAction = newRow.insertCell(5);
+                    //var colAction = newRow.insertCell(5);
 
                     colID.innerHTML = convertResult[n].invoice_id;
                     colYear.innerHTML = convertResult[n].invoice_year;
                     colBC.innerHTML = convertResult[n].student_BC;
                     colName.innerHTML = studentResult[x].student_name;
                     colStatus.innerHTML = convertResult[n].invoice_status;
-
-                    if(studentResult[x].student_BC !== convertResult[n+1].student_BC)
+                    
+                    if(n!=convertResult.length-1){
+                        if(studentResult[x].student_BC !== convertResult[n+1].student_BC)
                         x++;
+                    }
+                    
 
                     n++;
                     targetRow++;
@@ -584,7 +588,23 @@ function fetchAllInvoice(){
 
                     colYear.innerHTML = results[n].invoice_year;
                     colStatus.innerHTML = results[n].invoice_status;
-                    colAttachment.innerHTML = results[n].invoice_attach;
+                    //colAttachment.innerHTML = results[n].invoice_attach;
+                    var newButton = document.createElement("button");
+                    newButton.innerHTML = "View";
+                    
+                    newButton.value = results[n].invoice_attach;
+                    
+                    if(results[n].invoice_attach != null){
+                        
+                        //var newButton = document.createElement("button");
+                        newButton.innerHTML = "View";
+                        newButton.addEventListener("click", function(){
+                            viewAttachment(this.value, this.value);
+                            //alert(this.value);
+                        });
+                        //newButton.onclick = viewAttachment(results[n].invoice_attach, results[n].invoice_attach);
+                        colAttachment.appendChild(newButton);
+                    }                 
                     
                     //colAction.innerHTML = "meow";
 
@@ -648,12 +668,9 @@ function alterInvoices(action){
                 }
             }                         
         }   
-        //document.write("meow");
-    //alert("sampai dekat sini!");
-        //alert(globalCurrentUser);
+
         xmlhttp.open("GET", "../db.php?a=" + action + "&type=alterInvoices" + "&t=" + globalSelectedInvoice.toString() +"", true);
-        //alert(globalSelectedInvoice);
-        //alert("paramter sent: " + input);
+
         xmlhttp.send();
     }else{
         createModal("simpleAlert", "Error!", "Please select invoice(s) first.");
@@ -1004,6 +1021,20 @@ function createModal(type, firstParam, secondParam, thirdParam){
         var createText = document.createElement("p");
         createText.innerHTML = content;
         createContent.appendChild(createText);
+    }else if(type === "displayPDF"){
+        var title = firstParam;
+        var location = secondParam;
+
+        var createText = document.createElement("h5");
+        createText.innerHTML = title;
+        createHeader.appendChild(createText);
+
+        var pdfFrame = document.createElement("iframe");
+        pdfFrame.src = location;
+        pdfFrame.height = "700";
+        pdfFrame.width = "600";
+        pdfFrame.style.alignContent = "center";
+        createContent.appendChild(pdfFrame);
     }
 
     //show modal
@@ -1204,26 +1235,98 @@ function fetchManageChildren(){
     xmlhttp.send();
 }
 
-function terminateChildren(){
-    if(globalSelectedManageChildren.length > 0){
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                var status = this.responseText;
+var globalCurrentFile;
+function fetchUnpaidInvoice(){
+    var xmlhttp = new XMLHttpRequest();
+    //globalSelectedInvoice = [];
+    xmlhttp.onreadystatechange = function(){
 
-                if(status == 1){
-                    //alert(globalSelectedManageChildren + " have been deleted from database");
-                    createModal("simpleAlert", "Deleted!", globalSelectedManageChildren+"have been deleted from the database.");
-                    globalSelectedManageChildren = [];
-                    fetchManageChildren();
-                }else{
-                    createModal("simpleAlert", "Error!", "Error deleted children.");
+        if(this.readyState == 4 && this.status == 200){
+            //alert("code: " + code);
+            var tempArray = this.responseText.split("*"); 
+            //alert(tempArray); 
+            var status = tempArray[0];
+            //note: dia jadi array
+            //alert();
+            if(status === "1"){
+                var results = tempArray[1];
+                var convertResult = JSON.parse(results);
+                //alert(convertResult);
+                
+                var table = document.getElementById("billYearTable");
+                //clearTable("childrenTable");
+                var targetRow = table.rows.length;
+                
+                var n = 0;
+                while(n < convertResult.length){
+
+                    var newRow = table.insertRow(targetRow);
+                    var colYear = newRow.insertCell(0);
+                    var colAction = newRow.insertCell(1);
+
+
+                    colYear.innerHTML = convertResult[n].invoice_year;
+                    //colYear.innerHTML = convertResult[n].invoice_year;
+
+                    //var form = document.getElementById("postFile");
+
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "uploadFile.php");
+                    form.setAttribute("enctype", "multipart/form-data");
+                    form.id='inputFile_'+globalCurrentUser+'_'+convertResult[n].invoice_year;
+
+                    var newInput = document.createElement('input');
+                    newInput.type = 'file';
+                    newInput.id='inputFile_'+globalCurrentUser+'_'+convertResult[n].invoice_year;
+                    //newInput.accept="image/*, .pdf";
+                    newInput.name='inputFile';
+
+                    var hiddenData = document.createElement('input');
+                    hiddenData.type = 'hidden';
+                    hiddenData.value = globalCurrentUser+"*"+convertResult[n].invoice_year;
+                    hiddenData.name = 'hidden';
+
+                    //colAction.appendChild(newInput);
+                    //colAction.appendChild(hiddenData);
+                    form.appendChild(newInput);
+                    form.appendChild(hiddenData);
+                    colAction.appendChild(form);
+                    
+                    newInput.addEventListener("change", function(){
+                        form.submit();
+                    });
+
+                    if(convertResult[n].invoice_attach != null){
+                        var viewbutton = document.createElement("button");
+                        viewbutton.innerHTML = "View";
+                        viewbutton.value = convertResult[n].invoice_attach;
+                        viewbutton.addEventListener("click", function(){
+                            viewAttachment(this.value, this.value);
+                        });
+                        colAction.appendChild(viewbutton);
+                        form.style.display = "none";           
+                        //buat something utk dia view file and replace button
+                    }
+
+                    n++;
                 }
-            }                         
-        }   
-        xmlhttp.open("GET", "../db.php?type=terminateChildren&t="+globalSelectedManageChildren, true);
-        xmlhttp.send();
-    }else{
-        createModal("simpleAlert", "Error!", "Please select student first!");
+            }
+        } 
+
     }
+    xmlhttp.open("GET", "../db.php?type=fetchUnpaidBill&t="+globalCurrentUser, true);
+        xmlhttp.send();
 }
+
+function checkFile(id){
+    alert(document.getElementById(id).val());
+}
+
+function viewAttachment(title, fileName){
+    var location = "../parent/uploads/"+fileName;
+    //alert(location);
+    createModal("displayPDF", title,  location);
+}
+
+

@@ -17,12 +17,13 @@ echo "
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Semakan Yuran</title>
 
 
     <script>
         window.onload = fetchChildren('none');
         window.onload = fetchInvoice();
+        window.onload = fetchUnpaidInvoice();
     </script>
 
     <style>
@@ -56,8 +57,7 @@ echo "
         }
         p{
             margin-left:10px;
-        }
- 
+        } 
 
     </style>
 </head>
@@ -91,12 +91,14 @@ echo "
             </table><br>
         </div>
         <div>
-            <h5>List of Year</h5>
-            <table id="billYearTable" class="table">
-                <tr>
-                    <th>Year</th><th>Action</th>
-                </tr>
-            </table>
+            <h5>List of Pending Payment</h5>
+            <!--<form action="uploadFile.php" enctype="multipart/form-data" method="POST" id="postFile"> -->
+                <table id="billYearTable" class="table">
+                    <tr>
+                        <th>Year</th><th>Action</th>
+                    </tr>
+                </table>
+            <!--</form> -->     
             <button class="button">Submit</button>
         </div>
     </div>

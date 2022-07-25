@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 
 
 
@@ -105,7 +105,7 @@
     <h2>e-pibg</h2>
     <p>Sekolah Kebangsaan Seri Ampang</p>
         <a href="log in.php" ><button class="button"><span><b>LOG IN</b></span></button></a> 
-        <a href="sign up.php"><button class="button"><span><b>SIGN IN</b></span></button></a> 
+        <a href="sign up.php"><button class="button"><span><b>SIGN UP</b></span></button></a> 
     
 </div> 
 </body>

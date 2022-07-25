@@ -76,13 +76,14 @@ echo "
         <h5 >actions (on selected invoices)</h5>
         <table class="table2">
             <th>
-        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i> delete</button>
+        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i>Delete Invoice</button>
         </th>
-        <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i> Approved</button>
+        <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i>Approved</button>
         </th>
         <th><button onclick="alterInvoices('rejected')" class="btn"><i class="fa fa-ban fa-fw"></i>Rejected</button>
         </th>
         <th><button onclick="alterInvoices('pending')"  class="btn"><i class="fa fa-clock-o fa-fw"></i>Pending</button>
+        <th><button onclick="alterInvoices('deleteAttach')" class="btn">Delete Attachment</button></th>
 </table>
     </div>
     <br><div class="box">

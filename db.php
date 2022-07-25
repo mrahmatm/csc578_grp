@@ -152,44 +152,50 @@
         $target = $_REQUEST['t'];
         $action = $_REQUEST['a'];
 
-        //echo gettype($target);
-        
         $targetArray = explode(",", $target);
-        
-        //trim($targetArray[0], "'");
-        //$lastIndex = sizeof($targetArray) - 1;
-        //trim($targetArray[$lastIndex], "'");
-        //var_dump($targetArray);
-        $n = 0;
-        $queryCondition = " WHERE ";
-        //build WHERE clause
-        while($n < sizeof($targetArray)){
-            if($n!=0)
-                $queryCondition .= " OR ";
-
-            $queryCondition .= "invoice_id =".strval($targetArray[$n]);
-            //echo $queryCondition;
-            $n+=1;
-        }
-
-        //attach to main query
-        if(strstr($action, "delete")){
-            $query = "DELETE FROM invoice " . $queryCondition;
-        }elseif(strstr($action, "approved")){
-            $query = "UPDATE invoice SET invoice_status = 'APPROVED'" . $queryCondition;
-        }elseif(strstr($action, "rejected")){
-            $query = "UPDATE invoice SET invoice_status = 'REJECTED'" . $queryCondition;
-        }elseif(strstr($action, "pending")){
-            $query = "UPDATE invoice SET invoice_status = 'PENDING'" . $queryCondition;
-        }
             
-        require "connect.php";
-        $stmt = $pdo->prepare($query);       
-        if($stmt->execute()){
-            echo "1";
+            //trim($targetArray[0], "'");
+            //$lastIndex = sizeof($targetArray) - 1;
+            //trim($targetArray[$lastIndex], "'");
+            //var_dump($targetArray);
+            $n = 0;
+            $queryCondition = " WHERE ";
+            //build WHERE clause
+            while($n < sizeof($targetArray)){
+                if($n!=0)
+                    $queryCondition .= " OR ";
+
+                $queryCondition .= "invoice_id =".strval($targetArray[$n]);
+                //echo $queryCondition;
+                $n+=1;
+            }
+
+        //echo gettype($target);
+        if($action != "deleteAttach"){
+            
+            //attach to main query
+            if(strstr($action, "delete")){
+                $query = "DELETE FROM invoice " . $queryCondition;
+            }elseif(strstr($action, "approved")){
+                $query = "UPDATE invoice SET invoice_status = 'APPROVED'" . $queryCondition;
+            }elseif(strstr($action, "rejected")){
+                $query = "UPDATE invoice SET invoice_status = 'REJECTED'" . $queryCondition;
+            }elseif(strstr($action, "pending")){
+                $query = "UPDATE invoice SET invoice_status = 'PENDING'" . $queryCondition;
+            }
+                    
         }else{
-            echo "0";
+            require "connect.php";
+            $query = "UPDATE invoice SET invoice_attach = NULL" . $queryCondition;
         }
+
+        require "connect.php";
+            $stmt = $pdo->prepare($query);       
+            if($stmt->execute()){
+                echo "1";
+            }else{
+                echo "0";
+            }
     //end of alter invoices
     }else if(strstr($type, "generateInvoice")){
         require "connect.php";
@@ -443,6 +449,26 @@
     
         echo $status;
     //end of terminatechildren
+    }else if(strstr($type, "fetchUnpaidBill")){
+        require "connect.php";
+        
+        $target = $_REQUEST['t'];
+        //$sampleChild = $_REQUEST['s'];  
+
+        $stmt = $pdo->prepare("SELECT * FROM student WHERE parent_icNum =:parent");     
+        $stmt->execute(["parent"=>$target]);
+        $result = $stmt->fetch();
+        //echo var_dump($result);
+
+        $stmt = $pdo->prepare("SELECT DISTINCT invoice_year, invoice_attach, invoice_status, invoice_id FROM invoice WHERE student_BC =:student");     
+        $stmt->execute(["student"=>$result["student_BC"]]);
+        $resultInvoice = $stmt->fetchAll();
+
+        if($result != null){
+            echo "1*".json_encode($resultInvoice);
+        }else{
+            echo "0";
+        }
     }
     
 ?>
