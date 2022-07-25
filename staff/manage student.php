@@ -93,7 +93,7 @@ include "designStudent.php";
                 </div>
             </div>
             
-            <div class="container hiddenDiv" style="background-color:beige" id="manageStudentDiv">
+            <div class="container hiddenDiv" style="background-color::#beige" id="manageStudentDiv">
                 <h3 align="center">SENARAI PELAJAR</h3><br>
         <table>
             <th>
