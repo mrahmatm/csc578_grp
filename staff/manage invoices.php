@@ -52,10 +52,10 @@ echo "
     <th><label for="inputSearch">Carian:</label>
     <br><input type="text" id="inputSearch" onkeyup="fetchAllInvoice()" autofocus>
     <label for="inputSearch"> (melalui no sijil kelahiran pelajar:)</label><br></th>
-    <th><label for="sortType">susunan melalui: </label></th>
+    <th><label for="sortType">Susunan Melalui: </label></th>
     <th><select name="sortType" id="sortType" onchange="fetchAllInvoice()">
         <option value="-" selected>-</option>
-        <option value="student_BC">No sijil kelahiran</option>
+        <option value="student_BC">No. Sijil Kelahiran</option>
         <option value="invoice_year">Tahun</option>
         <option value="invoice_status">Status</option>
     </select><br></th>
@@ -63,7 +63,7 @@ echo "
 
 </div>
 <br>
-<label for="chkSelectAll">Pilih semua: </label><input type="checkbox" id="chkSelectAll" onchange="selectAllChk('chkSelectInvoice')">
+<label for="chkSelectAll">Pilih Semua: </label><input type="checkbox" id="chkSelectAll" onchange="selectAllChk('chkSelectInvoice')">
 <br><br>
     <div>
         <table id="invoiceTable" class="table1">
@@ -76,14 +76,14 @@ echo "
         <h5 >TIDAKAN KE ATAS PILIHAN</h5>
         <table class="table2">
             <th>
-        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i>Hapuskan invois </button>
+        <button onclick="alterInvoices('delete')" class="btn"><i class="fa fa-trash"></i>Hapuskan Invois </button>
         </th>
         <th><button onclick="alterInvoices('approved')" class="btn"><i class="fa fa-check"></i>Disahkan</button>
         </th>
-        <th><button onclick="alterInvoices('rejected')" class="btn"><i class="fa fa-ban fa-fw"></i>DI TOLAK</button>
+        <th><button onclick="alterInvoices('rejected')" class="btn"><i class="fa fa-ban fa-fw"></i>Ditolak</button>
         </th>
-        <th><button onclick="alterInvoices('deleteAttach')" class="btn">Hapus lampiran</button></th>
-        <th><button onclick="alterInvoices('pending')"  class="btn"><i class="fa fa-clock-o fa-fw"></i>MENUNGGU</button>
+        <th><button onclick="alterInvoices('deleteAttach')" class="btn">Hapus Lampiran</button></th>
+        <th><button onclick="alterInvoices('pending')"  class="btn"><i class="fa fa-clock-o fa-fw"></i>Menunggu</button>
 </table>
     </div>
     <br><div class="box">

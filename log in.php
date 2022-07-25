@@ -64,7 +64,7 @@
     </style>
     <div class="container">
     <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
-    <h2>e-pibg</h2>
+    <h2>e-PIBG</h2>
     <p>Sekolah Kebangsaan Seri Ampang</p>
                 <label for="inputUsername">NAMA PENGGUNA: </label>
                 <input type="text" id="inputUsername"><br> <br>
@@ -74,7 +74,7 @@
                     <input type="radio" name="userType" value="staff" id="radStaff">
                     <label for="radStaff">Kakitangan</label> 
                     <input type="radio" name="userType" value="parent" id="radParent" style= "margin-left: 50px";>
-                    <label for="radParent">ibubapa</label>
+                    <label for="radParent">Ibubapa</label>
                 </div>
                 <br>
                 <button id="btnLogin" onclick="verifyLogIn()" class="button">log masuk</button>

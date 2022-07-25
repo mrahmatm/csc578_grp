@@ -102,7 +102,7 @@
 <body>
 <div class="container" > 
 <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
-    <h2>e-pibg</h2>
+    <h2>e-PIBG</h2>
     <p>Sekolah Kebangsaan Seri Ampang</p>
         
         <a href="log in.php" ><button class="button"><span><b>LOG MASUK</b></span></button></a> 

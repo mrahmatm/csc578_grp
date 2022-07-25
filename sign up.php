@@ -38,7 +38,7 @@
             <table id="tablePeribadi" class="table1" >
             <tr>
                 <td>
-                <label for="inputName">Name: </label>
+                <label for="inputName">Nama: </label>
                 </td>
                 <td>
                 <label for="inputEmail">Email: </label>
@@ -53,10 +53,10 @@
             </tr>
             <tr>
                 <td>
-                <label for="inputIC">IC: </label>
+                <label for="inputIC">No. KP: </label>
                 </td>
                 <td>
-                <label for="inputPhone">Phone Number: </label>
+                <label for="inputPhone">No. Telefon: </label>
                 </td>
             </tr>
             <tr>
@@ -69,10 +69,10 @@
             </tr>
             <tr>
                 <td>
-                <label for="inputPassword">Password: </label>
+                <label for="inputPassword">Kata Laluan: </label>
                 </td>
                 <td>
-                <label for="inputConfirmPassword">Confirm password: </label>
+                <label for="inputConfirmPassword">Sahkan Kata Laluan </label>
                 </td>
     </tr>
     <tr>
@@ -92,26 +92,26 @@
         <div class="box">
             <br>
                     <h4>BUTIRAN ANAK</h4><br>
-                    <label for="searchBC">Enter Birth Cert Number: </label>
+                    <label for="searchBC">Masukkan No. Sijil Kelahiran </label>
                     <input type="text" id="searchBC" onkeyup="searchBC(this.value)"><br>
-                    <h6>Search result:</h6>
+                    <h6>Hasil Carian</h6>
                     <label for="displayName">Nama: </label>
                     <input type="text" disabled id="displayName">
-                    <label for="displayBC">BC: </label>
+                    <label for="displayBC">No. Sijil Kelahiran </label>
                     <input type="text" disabled id="displayBC"><br>
                     <br>
-                    <button id="addChild" onclick="addChild()" disabled class="button">ADD</button>
+                    <button id="addChild" onclick="addChild()" disabled class="button">TAMBAH</button>
         </div>
         <div class="box">
             <h4>SENARAI BUTIRAN PERIBADI ANAK</h4><br>
             <table id="childrenTable" class="table">
                 <tr>
-                    <th>Name</th>
-                    <th>BC</th>
-                    <th>Delete</th>
+                    <th>Nama</th>
+                    <th>No. Sijil Kelahiran</th>
+                    <th>Buang</th>
                 </tr>
             </table>
-            <button id="btnSubmit" onclick="submitSignUp()" disabled  class="button1">Submit</button>
+            <button id="btnSubmit" onclick="submitSignUp()" disabled  class="button1">Hantar</button>
         </div>
     </div>    
 

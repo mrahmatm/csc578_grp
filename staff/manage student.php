@@ -76,7 +76,7 @@ include "designStudent.php";
                 <span id="message"></span>
                     <table class="table">
                         <tr>
-                        <td width="25%" text_align="right">pilih fail excel </td>
+                        <td width="25%" text_align="right">Pilih Fail Excel </td>
                         <td width="50%"><input type="file" name="select_excel" id="inputFile"/></td>
                         <td width="25%"><button onclick="loadExcelStudent()"  name="load" class="btn btn-primary">Hantar</button></td>
                         </tr>
@@ -99,13 +99,13 @@ include "designStudent.php";
             <th>
                 <label for="inputSearch">Carian:</label>
                 <input type="text" id="inputSearch" onkeyup="fetchManageChildren()" autofocus>
-                <label for="inputSearch"> (melalui no sijil kelahiran pelajar)</label><br>
+                <label for="inputSearch"> (melalui no. sijil kelahiran pelajar)</label><br>
             </th>
             <th>
-                <label for="sortType">melalui susunan: </label>
+                <label for="sortType">Melalui Susunan: </label>
                 <select name="sortType" id="sortType" onchange="fetchManageChildren()">
                     <option value="-" selected>-</option>
-                    <option value="student_BC">no sijil kelahiran</option>
+                    <option value="student_BC">No. Sijil Kelahiran</option>
                     <option value="student_name">Nama</option>
                 </select><br>
             </th>

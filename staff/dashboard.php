@@ -102,16 +102,16 @@ h1 {text-align: center;
   
 </div>
         <div class="container" >
-    <h1>e-Pibg</h1>
+    <h1>e-PIBG</h1>
     <br><br><br>
     <a href="manage aduan.php"><button class="button"><span><b>PENGURUSAN ADUAN</b></span></button></a>
     <br><br>
-    <a href="manage invoices.php"><button class="button"><span><b>PENGURUSAN INVOICES</b></span></button></a>
+    <a href="manage invoices.php"><button class="button"><span><b>PENGURUSAN INVOIS</b></span></button></a>
     <br><br>
     <a href="manage student.php"><button class="button"><span><b>PENGURUSAN PELAJAR</b></span></button></a>
     <br><br>
 </div>
-<button id="btnLogout" onclick="logOut()">Log keluar</button>
+<button id="btnLogout" onclick="logOut()">LOG KELUAR</button>
 
 </body>
 </html>
