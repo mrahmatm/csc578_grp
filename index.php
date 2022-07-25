@@ -104,8 +104,13 @@
 <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
     <h2>e-pibg</h2>
     <p>Sekolah Kebangsaan Seri Ampang</p>
+<<<<<<< Updated upstream
         <a href="log in.php" ><button class="button"><span><b>LOG IN</b></span></button></a> 
         <a href="sign up.php"><button class="button"><span><b>SIGN UP</b></span></button></a> 
+=======
+        <a href="log in.php" ><button class="button"><span><b>LOG MASUK</b></span></button></a> 
+        <a href="sign up.php"><button class="button"><span><b>DAFTAR AKAUN</b></span></button></a> 
+>>>>>>> Stashed changes
     
 </div> 
 </body>

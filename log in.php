@@ -7,7 +7,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
     <title>Log In</title>
+=======
+    <title>LOG MASUK</title>
+>>>>>>> Stashed changes
 
 
 
@@ -66,18 +70,18 @@
     <img src="logo.png" alt="Logo Sekolah" width="200" height="200"  >
     <h2>e-pibg</h2>
     <p>Sekolah Kebangsaan Seri Ampang</p>
-                <label for="inputUsername">Username: </label>
+                <label for="inputUsername">NAMA PENGGUNA: </label>
                 <input type="text" id="inputUsername"><br> <br>
-                <label for="inputPassword">Password: </label>
+                <label for="inputPassword">KATA LALUAN: </label>
                 <input type="password" id="inputPassword">
                 <div class="radio">
                     <input type="radio" name="userType" value="staff" id="radStaff">
-                    <label for="radStaff">Staff</label> 
+                    <label for="radStaff">Kakitangan</label> 
                     <input type="radio" name="userType" value="parent" id="radParent" style= "margin-left: 50px";>
-                    <label for="radParent">Parent</label>
+                    <label for="radParent">ibubapa</label>
                 </div>
                 <br>
-                <button id="btnLogin" onclick="verifyLogIn()" class="button">Submit</button>
+                <button id="btnLogin" onclick="verifyLogIn()" class="button">log masuk</button>
             </div>
     </div>
 </body>

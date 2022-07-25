@@ -102,7 +102,7 @@ h1 {text-align: center;
   
 </div>
         <div class="container" >
-    <h1>staffs's dashboard</h1>
+    <h1>e-Pibg</h1>
     <br><br><br>
     <a href="manage aduan.php"><button class="button"><span><b>PENGURUSAN ADUAN</b></span></button></a>
     <br><br>
@@ -111,7 +111,7 @@ h1 {text-align: center;
     <a href="manage student.php"><button class="button"><span><b>PENGURUSAN PELAJAR</b></span></button></a>
     <br><br>
 </div>
-<button id="btnLogout" onclick="logOut()">Log Out</button>
+<button id="btnLogout" onclick="logOut()">Log keluar</button>
 
 </body>
 </html>

@@ -50,7 +50,7 @@ include "designStudent.php";
     <h1>PENGURUSAN PANGKALAN DATA PELAJAR</h1>
     <a href="dashboard.php" class="cta">
     <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
-    <span>Back</span>
+    <span>Kembali</span>
     <svg width="13px" height="10px" viewBox="0 0 13 10">
     <path d="M1,5 L11,5"></path>
     
@@ -61,64 +61,64 @@ include "designStudent.php";
         <div class="container">
 
             <button id="btnToggleAddStudent" class="buttonToggle" style="background-color: grey;" 
-            onclick="toggleDivDisplay('manageStudentDiv', 'addStudentDiv')">Add Student</button>
+            onclick="toggleDivDisplay('manageStudentDiv', 'addStudentDiv')">Tambah Pelajar</button>
 
             <button id="btnToggleManageStudent" class="buttonToggle" style="background-color:#8b4513 ;" 
-            onclick="toggleDivDisplay('addStudentDiv', 'manageStudentDiv')">Manage Student</button>
+            onclick="toggleDivDisplay('addStudentDiv', 'manageStudentDiv')">Urus Pelajar</button>
 
             <div class="container" id="addStudentDiv">
                 <br />
-                <h3 align="center">Load Student Data from Excel Sheet</h3>
+                <h3 align="center">Memuatnaik data pelajar dari excel</h3>
                 <br />
-                <p>Please download the template <a href="TEMPLATE STUDENT DATA.xlsx" download>here</a> and use it!</p>
+                <p>Sila memuat turun templat <a href="TEMPLATE STUDENT DATA.xlsx" download>disini</a> dan gunakannya !</p>
                 <br />
                 <div class="table-responsive">
                 <span id="message"></span>
                     <table class="table">
                         <tr>
-                        <td width="25%" text_align="right">Select Excel File</td>
+                        <td width="25%" text_align="right">pilih fail excel </td>
                         <td width="50%"><input type="file" name="select_excel" id="inputFile"/></td>
-                        <td width="25%"><button onclick="loadExcelStudent()"  name="load" class="btn btn-primary">Submit</button></td>
+                        <td width="25%"><button onclick="loadExcelStudent()"  name="load" class="btn btn-primary">Hantar</button></td>
                         </tr>
                     </table>
 
                 <br/>
-                    <h6>Preview:</h6><br>
+                    <h6>Paparan:</h6><br>
                     <div id="excel_output">
 
                     </div>
                 </div>
                 <div>
-                    <button class="button" onclick="insertStudent()">Add Students</button>
+                    <button class="button" onclick="insertStudent()">Tambah Pelajar</button>
                 </div>
             </div>
             
-            <div class="container hiddenDiv" style="background-color:#8b4513" id="manageStudentDiv">
+            <div class="container hiddenDiv" style="background-color:beige" id="manageStudentDiv">
                 <h3 align="center">SENARAI PELAJAR</h3><br>
         <table>
             <th>
-                <label for="inputSearch">Search:</label>
+                <label for="inputSearch">Carian:</label>
                 <input type="text" id="inputSearch" onkeyup="fetchManageChildren()" autofocus>
-                <label for="inputSearch"> (by student BC)</label><br>
+                <label for="inputSearch"> (melalui no sijil kelahiran pelajar)</label><br>
             </th>
             <th>
-                <label for="sortType">Sort by: </label>
+                <label for="sortType">melalui susunan: </label>
                 <select name="sortType" id="sortType" onchange="fetchManageChildren()">
                     <option value="-" selected>-</option>
-                    <option value="student_BC">BC</option>
-                    <option value="student_name">Name</option>
+                    <option value="student_BC">no sijil kelahiran</option>
+                    <option value="student_name">Nama</option>
                 </select><br>
             </th>
         </table>
         <table>
                 <th><button onclick="fetchManageChildren()">Refresh</button><br></th>
-                <th><p>Delete Selected: </p></th>
-                <th><button onclick="terminateChildren()">Delete</button><br></th>
+                <th><p>HAPUSKAN TERPILIH :</p></th>
+                <th><button onclick="terminateChildren()">Hapus</button><br></th>
         </table>
                 <div>
                     <table id="studentTable" class="table1">
                         <tr>
-                            <th>BC</th><th>Name</th><th>Parent</th><th>Action</th>
+                            <th>NO SIJIL KELAHIRAN</th><th>NAMA</th><th>IBUBAPA</th><th>TINDAKAN</th>
                         </tr>
                     </table>
                 </div>

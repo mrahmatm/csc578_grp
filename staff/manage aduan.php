@@ -52,7 +52,7 @@ h1 {text-align: right;
 <h1>SENARAI ADUAN</h1>
     <a href="dashboard.php" class="cta">
     <polyline points="-8 -1 -12 -5 -8 -9"></polyline>
-    <span>Back</span>
+    <span>KEMBALI</span>
     <svg width="13px" height="10px" viewBox="0 0 13 10">
     <path d="M1,5 L11,5"></path>
     </svg>
@@ -60,18 +60,18 @@ h1 {text-align: right;
 </div>
     <div>
         <br>
-        <label for="displayLimiter">Displaying the first </label>
+        <label for="displayLimiter">Papar </label>
         <input type="number" step="5" min="10" value="10" id="displayLimiter">
-        <label for="displayLimiter"> entries.</label>
+        <label for="displayLimiter"> pertama.</label>
         <br>
         <button id="btnRefresh" onclick="fetchAduan()" class="btn"><i class="fa fa-refresh"></i></button><br>
         <div>
             <table id="tableAduan" class="table1">
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Username</th>
-                    <th>Description</th>
+                    <th>Tajuk</th>
+                    <th>Nama Pengguna</th>
+                    <th>Keterangan</th>
                 </tr>
             </table>
         </div>     
